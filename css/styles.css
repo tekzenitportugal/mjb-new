@@ -8972,3 +8972,12 @@ body.menu-open .site-header {
     margin-top: 48px
   }
 }
+
+/* Mobile: the header pill and the open menu span the same width as the page container. */
+@media (max-width: 767px) {
+  .site-header,
+  .image-menu {
+    width: calc(100% - 2 * var(--gutter));
+    max-width: none
+  }
+}
