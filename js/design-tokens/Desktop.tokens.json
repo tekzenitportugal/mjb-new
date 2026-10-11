@@ -1,0 +1,695 @@
+{
+  "Font Family": {
+    "$type": "string",
+    "$value": "Manrope",
+    "$description": "Primary typeface used across the design system. Value: \"Noto Sans\".",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:7996:18175",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.type": "string"
+    }
+  },
+  "Font Family Emphasized": {
+    "$type": "string",
+    "$value": "IBM Plex Serif",
+    "$description": "Font Family Emphasized design token. Value: \"Poppins\".",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:8729:75234",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.type": "string"
+    }
+  },
+  "Min-width": {
+    "$type": "number",
+    "$value": 768,
+    "$description": "Responsive breakpoint boundary (lower bound, px). Value differs per mode (Mobile/Desktop/Large). Resolves to 768.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:8010:81743",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "max-width": {
+    "$type": "number",
+    "$value": 1919,
+    "$description": "Responsive breakpoint boundary (upper bound, px). Value differs per mode (Mobile/Desktop/Large). Resolves to 1339.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:8010:81744",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "Font Size": {
+    "Headline": {
+      "large": {
+        "$type": "number",
+        "$value": 50,
+        "$description": "Typography scale — font size for Headline/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 50.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16690",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 40,
+        "$description": "Typography scale — font size for Headline/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 40.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16691",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 35,
+        "$description": "Typography scale — font size for Headline/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 35.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16692",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Body": {
+      "large": {
+        "$type": "number",
+        "$value": 17.5,
+        "$description": "Typography scale — font size for Body/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 17.5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16697",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 15,
+        "$description": "Typography scale — font size for Body/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 15.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16698",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 12.5,
+        "$description": "Typography scale — font size for Body/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 12.5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16699",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Label": {
+      "large": {
+        "$type": "number",
+        "$value": 12.5,
+        "$description": "Typography scale — font size for Label/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 12.5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16701",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 10,
+        "$description": "Typography scale — font size for Label/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 10.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16702",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 7.5,
+        "$description": "Typography scale — font size for Label/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 7.5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16703",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Display": {
+      "large": {
+        "$type": "number",
+        "$value": 70,
+        "$description": "Typography scale — font size for Display/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 70.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7977:54039",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 65,
+        "$description": "Typography scale — font size for Display/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 65.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16688",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 55,
+        "$description": "Typography scale — font size for Display/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 55.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16689",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Title": {
+      "large": {
+        "$type": "number",
+        "$value": 30,
+        "$description": "Typography scale — font size for Title/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 30.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16693",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 25,
+        "$description": "Typography scale — font size for Title/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 25.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16694",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 20,
+        "$description": "Typography scale — font size for Title/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 20.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16695",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    }
+  },
+  "Line Height": {
+    "Label": {
+      "large": {
+        "$type": "number",
+        "$value": 15,
+        "$description": "Typography scale — line height for Label/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 15.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16715",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 15,
+        "$description": "Typography scale — line height for Label/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 15.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16716",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 10,
+        "$description": "Typography scale — line height for Label/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 10.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16717",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Body": {
+      "large": {
+        "$type": "number",
+        "$value": 22.5,
+        "$description": "Typography scale — line height for Body/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 22.5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16712",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 20,
+        "$description": "Typography scale — line height for Body/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 20.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16713",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 15,
+        "$description": "Typography scale — line height for Body/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 15.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16714",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Title": {
+      "large": {
+        "$type": "number",
+        "$value": 35,
+        "$description": "Typography scale — line height for Title/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 35.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16709",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 30,
+        "$description": "Typography scale — line height for Title/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 30.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16710",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 25,
+        "$description": "Typography scale — line height for Title/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 25.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16711",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Headline": {
+      "large": {
+        "$type": "number",
+        "$value": 55,
+        "$description": "Typography scale — line height for Headline/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 55.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16706",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 45,
+        "$description": "Typography scale — line height for Headline/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 45.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16707",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 40,
+        "$description": "Typography scale — line height for Headline/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 40.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16708",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Display": {
+      "large": {
+        "$type": "number",
+        "$value": 75,
+        "$description": "Typography scale — line height for Display/large. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 75.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7989:54040",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 70,
+        "$description": "Typography scale — line height for Display/normal. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 70.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16704",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "small": {
+        "$type": "number",
+        "$value": 60,
+        "$description": "Typography scale — line height for Display/small. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 60.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:7996:16705",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    }
+  },
+  "Scale": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Spacing scale step 0. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 0.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7989:54042",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "3XS": {
+      "$type": "number",
+      "$value": 5,
+      "$description": "Spacing scale step 3XS. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 5.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8191:15695",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "2XS": {
+      "$type": "number",
+      "$value": 10,
+      "$description": "Spacing scale step 2XS. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 10.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81722",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "XS": {
+      "$type": "number",
+      "$value": 15,
+      "$description": "Spacing scale step XS. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 15.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81723",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "S": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "Spacing scale step S. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 20.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81724",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "M": {
+      "$type": "number",
+      "$value": 25,
+      "$description": "Spacing scale step M. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 25.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81725",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "L": {
+      "$type": "number",
+      "$value": 30,
+      "$description": "Spacing scale step L. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 30.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81726",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "XL": {
+      "$type": "number",
+      "$value": 35,
+      "$description": "Spacing scale step XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 35.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81727",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "2XL": {
+      "$type": "number",
+      "$value": 40,
+      "$description": "Spacing scale step 2XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 40.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81728",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "3XL": {
+      "$type": "number",
+      "$value": 45,
+      "$description": "Spacing scale step 3XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 45.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81729",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "4XL": {
+      "$type": "number",
+      "$value": 50,
+      "$description": "Spacing scale step 4XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 50.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81730",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "5XL": {
+      "$type": "number",
+      "$value": 55,
+      "$description": "Spacing scale step 5XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 55.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81736",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "6XL": {
+      "$type": "number",
+      "$value": 60,
+      "$description": "Spacing scale step 6XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 60.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81737",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "7XL": {
+      "$type": "number",
+      "$value": 65,
+      "$description": "Spacing scale step 7XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 65.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81738",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "8XL": {
+      "$type": "number",
+      "$value": 70,
+      "$description": "Spacing scale step 8XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 70.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81739",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "9XL": {
+      "$type": "number",
+      "$value": 75,
+      "$description": "Spacing scale step 9XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 75.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81740",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "10XL": {
+      "$type": "number",
+      "$value": 80,
+      "$description": "Spacing scale step 10XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 80.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81741",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "11XL": {
+      "$type": "number",
+      "$value": 85,
+      "$description": "Spacing scale step 11XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 85.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81742",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "12XL": {
+      "$type": "number",
+      "$value": 90,
+      "$description": "Spacing scale step 12XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 90.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81732",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "13XL": {
+      "$type": "number",
+      "$value": 95,
+      "$description": "Spacing scale step 13XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 95.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81733",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "14XL": {
+      "$type": "number",
+      "$value": 100,
+      "$description": "Spacing scale step 14XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 100.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81734",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "15XL": {
+      "$type": "number",
+      "$value": 105,
+      "$description": "Spacing scale step 15XL. Use for margin, padding, and gap sizing. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 105.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81735",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "Full": {
+      "$type": "number",
+      "$value": 9999999,
+      "$description": "Corner radius scale step 5XL. Value scales per breakpoint (Mobile/Desktop/Large). Resolves to 9999999.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:8010:81756",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Font Weight": {
+    "medium": {
+      "$type": "number",
+      "$value": 500,
+      "$description": "Font weight token — medium. Resolves to 500.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7989:54044",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "regular": {
+      "$type": "number",
+      "$value": 400,
+      "$description": "Font weight token — regular. Resolves to 400.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7989:54046",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "light": {
+      "$type": "number",
+      "$value": 300,
+      "$description": "Font weight token — light. Resolves to 300.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:7989:54045",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Desktop"
+  }
+}
