@@ -9190,7 +9190,7 @@ body.menu-open .site-header {
 .community-controls button[aria-pressed=true]::after{background:var(--silver-700)}
 .community-controls button:focus-visible{outline:2px solid var(--silver-800);outline-offset:3px}
 @media(max-width:1279px){.community-slide-copy{padding-right:40px}.community-slide h3{font-size:var(--title-large);line-height:var(--line-title-large)}}
-@media(max-width:767px){.community-slide{grid-template-columns:1fr;align-content:start;max-height:none}.community-slide-copy{padding:40px 20px 80px}.community-slide>img{height:360px;min-height:0;grid-row:1}.community-slide-copy>p{line-height:var(--line-body-large)}.community-controls{top:380px;bottom:auto;left:20px}.community-quote{margin-top:32px}.community-slide-copy>.community-more{margin-top:32px}}
+@media(max-width:767px){.community-slide{grid-template-columns:1fr;align-content:start;max-height:none}.community-slide-copy{padding:40px 20px 80px}.community-slide>img{height:360px;min-height:0;grid-row:1}.community-slide-copy>p{line-height:var(--line-body-large)}.community-controls{top:auto;bottom:30px;left:20px}.community-quote{margin-top:32px}.community-slide-copy>.community-more{margin-top:32px}}
 @media(prefers-reduced-motion:reduce){.community-controls button{transition:none}}
 
 /* Full-bleed community slider and persistent floating navigation. */
