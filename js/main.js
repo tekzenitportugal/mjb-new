@@ -824,8 +824,18 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const samePage = url => url.origin === location.origin && url.pathname.replace(/index.html$/, '') === location.pathname.replace(/index.html$/, '');
   const scrollToId = (id, smooth) => {
-    const target = id && document.getElementById(decodeURIComponent(id));
+    const key = id && decodeURIComponent(id);
+    // A material tab hash (#laminated…) selects that tab instead of scrolling to an element.
+    const tab = key && document.querySelector('[data-materials] [role=tab][data-material="' + key + '"]');
+    if (tab) { tab.click(); tab.closest('[data-materials]').scrollIntoView({ behavior: smooth && !reduced.matches ? 'smooth' : 'auto', block: 'center' }); return true; }
+    const target = key && document.getElementById(key);
     if (!target) return false;
+    // A native accordion item opens (and its group closes) like it does for a #hash URL.
+    if (target.matches('details')) {
+      document.querySelectorAll('details.acc-item, details.industry-detail-item').forEach(item => {
+        if ((item.dataset.group || item.name) === (target.dataset.group || target.name)) item.open = item === target;
+      });
+    }
     const behavior = smooth && !reduced.matches ? 'smooth' : 'auto';
     if (target.classList.contains('is-pinned')) {
       // A pinned section (About journey) holds its content centred once it sticks; land exactly where the pin
@@ -837,6 +847,8 @@
     } else {
       target.scrollIntoView({ behavior, block: 'start' });
     }
+    // Focus moves to the section for keyboard and screen-reader users, without drawing a focus ring on it.
+    target.classList.add('anchor-target');
     if (!target.matches('a, button, input, select, textarea, [tabindex]')) target.setAttribute('tabindex', '-1');
     target.focus({ preventScroll: true });
     return true;

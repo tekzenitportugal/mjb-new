@@ -589,7 +589,7 @@ address {
 }
 
 .hero-about {
-  min-height: 900px;
+  min-height: 784px;
 }
 
 .hero-bg,
@@ -627,7 +627,7 @@ address {
 }
 
 .hero-home .hero-inner {
-  min-height: 900px;
+  min-height: 784px;
   padding-bottom: 120px
 }
 
@@ -5490,7 +5490,7 @@ body.menu-open .site-header>a::after {
   position: relative;
   isolation: isolate;
   background: var(--silver-800);
-  min-height: 900px
+  min-height: 784px
 }
 
 .contact-hero-bg {
@@ -6718,8 +6718,8 @@ body.menu-open .site-header>a::after {
 
 /* Contacts: fixed hero background with an independently growing form card. */
 .contact-hero {
-  height: 900px;
-  min-height: 900px
+  height: 784px;
+  min-height: 784px
 }
 
 .contact-hero-grid {
@@ -8256,13 +8256,13 @@ body.menu-open .site-header {
 
 /* Services — match Figma (node 2652:27010) */
 .page-services .hero-services {
-  height: 900px;
-  min-height: 900px;
+  height: 784px;
+  min-height: 784px;
 }
 
 .page-services .hero-services .hero-inner {
-  padding-top: 547px;
-  min-height: 900px;
+  padding-top: 431px;
+  min-height: 784px;
 }
 
 .page-services .hero-services .hero-overlay {
@@ -8409,13 +8409,12 @@ body.menu-open .site-header {
   }
 }
 
-/* Home hero on mobile: full viewport height, copy bottom-aligned with 45px padding. */
+/* Home hero on mobile: 784px tall, copy bottom-aligned with 45px padding. */
 @media (max-width: 767px) {
 
   .hero-home,
   .hero-home .hero-inner {
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 784px;
   }
 
   .hero-home .hero-inner {
@@ -8771,12 +8770,11 @@ body.menu-open .site-header {
   }
 }
 
-/* Inner-page hero banners: full viewport height, copy pinned to the bottom with 45px of padding (as on Home). */
+/* Inner-page hero banners: 784px tall, copy pinned to the bottom with 45px of padding (as on Home). */
 .hero:not(.hero-home),
 .material-detail-hero,
 .industry-detail-hero {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 784px;
   height: auto;
   max-height: none;
   display: flex;
@@ -8805,10 +8803,9 @@ body.menu-open .site-header {
   /* padding-bottom: 45px */
 }
 
-/* Industries + Contacts banners follow the same rule: at least a full screen, content kept 45px from the bottom. */
+/* Industries + Contacts banners follow the same rule: at least 784px, content kept 45px from the bottom. */
 .industries-hero {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 784px;
   padding-top: 140px;
   /* padding-bottom: 45px; */
   display: flex;
@@ -8861,7 +8858,7 @@ body.menu-open .site-header {
 @media (max-width: 767px) {
   .contact-hero {
     height: auto;
-    min-height: 100svh
+    min-height: 784px
   }
 }
 
@@ -9656,4 +9653,10 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
     height: auto !important;
     aspect-ratio: 354 / 340
   }
+}
+
+/* Sections reached through an in-page link take focus silently: no outline around the whole section. */
+.anchor-target:focus,
+.anchor-target:focus-visible {
+  outline: none
 }
