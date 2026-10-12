@@ -631,8 +631,7 @@ address {
   padding-bottom: 120px
 }
 
-.hero-home .hero-copy .lede,
-.hero-home .btn {
+.hero-home .hero-copy .lede {
   font-size: var(--title-small);
   line-height: var(--line-title-small)
 }
