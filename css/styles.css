@@ -347,12 +347,12 @@ address {
   color: var(--silver-100)
 }
 
- .bg-dark h2 {
+.bg-dark h2 {
   color: var(--silver-200)
-} 
+}
 
- .bg-dark .c-400 {
-   color: var(--silver-400)
+.bg-dark .c-400 {
+  color: var(--silver-400)
 }
 
 .bg-dark .emphasis {
@@ -382,7 +382,7 @@ address {
   /* font-size: var(--body);
   line-height: var(--line-body); */
   font-size: var(--body-small);
-    line-height: var(--line-body-small);
+  line-height: var(--line-body-small);
   font-weight: 500;
 }
 
@@ -589,7 +589,7 @@ address {
 }
 
 .hero-about {
-   min-height: 900px;
+  min-height: 900px;
 }
 
 .hero-bg,
@@ -671,8 +671,8 @@ address {
 }
 
 .hero-about .hero-inner {
-padding-top: 464px;
-    padding-bottom: 182px;
+  padding-top: 464px;
+  padding-bottom: 182px;
 }
 
 .hero-about .hero-copy h1 {
@@ -776,7 +776,7 @@ padding-top: 464px;
   line-height: var(--line-body-large);
 }
 
-.industry-supply  .accordion {
+.industry-supply .accordion {
   margin-top: 0
 }
 
@@ -931,7 +931,8 @@ padding-top: 464px;
 .stats-list {
   display: grid;
   gap: 48px;
-  padding-top: calc(2 * var(--line-display-small)) /* aligns the first stat with the heading's second line */
+  padding-top: calc(2 * var(--line-display-small))
+    /* aligns the first stat with the heading's second line */
 }
 
 .stat-row {
@@ -940,7 +941,8 @@ padding-top: 464px;
 }
 
 .stat-row:not(:last-child)>div {
-  padding-left: 3px /* the design nudges the first two figures 3px right */
+  padding-left: 3px
+    /* the design nudges the first two figures 3px right */
 }
 
 .stat-num {
@@ -994,7 +996,8 @@ padding-top: 464px;
 
 .processes .container {
   position: relative;
-  left: -3px /* the design's 1236px group sits 3px left of the page grid */
+  left: -3px
+    /* the design's 1236px group sits 3px left of the page grid */
 }
 
 .process-head {
@@ -1032,7 +1035,8 @@ padding-top: 464px;
   top: 0;
   left: 50%;
   width: 2px;
-  height: 412px; /* static fallback; main.js sets it from scroll position */
+  height: 412px;
+  /* static fallback; main.js sets it from scroll position */
   transform: translateX(-50%);
   background: var(--primary-300)
 }
@@ -1053,10 +1057,21 @@ padding-top: 464px;
   display: contents
 }
 
-.process-timeline .process:nth-of-type(1) { --row: 1 }
-.process-timeline .process:nth-of-type(2) { --row: 2 }
-.process-timeline .process:nth-of-type(3) { --row: 3 }
-.process-timeline .process:nth-of-type(4) { --row: 4 }
+.process-timeline .process:nth-of-type(1) {
+  --row: 1
+}
+
+.process-timeline .process:nth-of-type(2) {
+  --row: 2
+}
+
+.process-timeline .process:nth-of-type(3) {
+  --row: 3
+}
+
+.process-timeline .process:nth-of-type(4) {
+  --row: 4
+}
 
 .step-num,
 .process-copy {
@@ -1135,7 +1150,8 @@ padding-top: 464px;
   object-fit: cover;
   border-radius: 12px;
   opacity: 0;
-  transition: opacity 0s .5s /* outgoing photo stays put until the incoming one has faded in over it */
+  transition: opacity 0s .5s
+    /* outgoing photo stays put until the incoming one has faded in over it */
 }
 
 .process-photo.is-active {
@@ -1160,7 +1176,8 @@ padding-top: 464px;
   }
 
   .process-line {
-    left: 76px /* between the step numbers and the copy, which now spans the centre */
+    left: 76px
+      /* between the step numbers and the copy, which now spans the centre */
   }
 }
 
@@ -1229,10 +1246,21 @@ padding-top: 464px;
     opacity: 1
   }
 
-  .process-photo:nth-child(1) { --n: 1 }
-  .process-photo:nth-child(2) { --n: 2 }
-  .process-photo:nth-child(3) { --n: 3 }
-  .process-photo:nth-child(4) { --n: 4 }
+  .process-photo:nth-child(1) {
+    --n: 1
+  }
+
+  .process-photo:nth-child(2) {
+    --n: 2
+  }
+
+  .process-photo:nth-child(3) {
+    --n: 3
+  }
+
+  .process-photo:nth-child(4) {
+    --n: 4
+  }
 
   .process-end {
     margin-top: 24px
@@ -1456,7 +1484,10 @@ padding-top: 464px;
   min-height: 476px
 }
 
-.industry-detail-quote, .industry-detail-feature, .contact-careers, .split.family{
+.industry-detail-quote,
+.industry-detail-feature,
+.contact-careers,
+.split.family {
   max-height: 476px
 }
 
@@ -1751,7 +1782,7 @@ padding-top: 464px;
   color: #bbb;
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
-  line-height:140%;
+  line-height: 140%;
 }
 
 .credit {
@@ -1846,7 +1877,7 @@ padding-top: 464px;
   max-width: 452px;
   margin-top: 20px;
   font-size: var(--body-large);
-    line-height: var(--line-body-large);
+  line-height: var(--line-body-large);
   color: var(--silver-300);
 }
 
@@ -1894,13 +1925,13 @@ padding-top: 464px;
   font-size: var(--title-large);
   line-height: var(--line-title-large);
   padding-bottom: 30px;
-    color: var(--silver-800);
+  color: var(--silver-800);
 }
 
 .acc-explore {
   display: none;
-font-size: var(--body-large);
-    line-height: var(--line-body-large);
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
   align-items: center;
   gap: 5px
 }
@@ -2018,7 +2049,7 @@ font-size: var(--body-large);
   background: var(--primary-50);
   padding: 20px;
   border-radius: 8px;
-      min-height: 121px;
+  min-height: 121px;
 }
 
 .reach-copy h3 {
@@ -2309,8 +2340,8 @@ font-size: var(--body-large);
 
 .supply-stats .stat-num {
   white-space: nowrap;
-font-size: var(--display-large);
-    line-height: var(--line-display-large);
+  font-size: var(--display-large);
+  line-height: var(--line-display-large);
   margin-bottom: 4px;
 }
 
@@ -2642,11 +2673,11 @@ font-size: var(--display-large);
     grid-template-columns: 198px minmax(0, 1fr)
   }
 
-  
 
-  
 
-  
+
+
+
 
   .hero-copy .lede {
     max-width: 576px
@@ -2716,11 +2747,11 @@ font-size: var(--display-large);
     white-space: normal
   }
 
-  
 
-  
 
-  
+
+
+
 
   .locations-head {
     grid-template-columns: 1fr 1.2fr;
@@ -3099,31 +3130,31 @@ font-size: var(--display-large);
     gap: 30px
   }
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   .locations {
     padding-block: 72px
@@ -3216,7 +3247,11 @@ font-size: var(--display-large);
     min-height: 0
   }
 
-  .split.family, .contact-careers, .material-quote, .industry-detail-quote, .industry-detail-feature {
+  .split.family,
+  .contact-careers,
+  .material-quote,
+  .industry-detail-quote,
+  .industry-detail-feature {
     max-height: fit-content;
   }
 
@@ -4052,9 +4087,9 @@ h1 {
     line-height: var(--line-headline-large)
   }
 
-  
 
-  
+
+
 
   .footer-top {
     grid-template-columns: 285px minmax(0, 1fr) auto;
@@ -4072,11 +4107,11 @@ h1 {
     line-height: var(--line-headline)
   }
 
-  
 
-  
 
-  
+
+
+
 
   .locations-head {
     grid-template-columns: 1fr 1.2fr;
@@ -4161,15 +4196,15 @@ h1 {
     margin-bottom: 28px
   }
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
 
   .locations-head {
     grid-template-columns: 1fr;
@@ -4417,7 +4452,7 @@ h1 {
   height: 409px;
   transform: none;
   opacity: 1;
-    padding: 40px;
+  padding: 40px;
 }
 
 :is(.page-home, .page-industries, .page-contacts) .quote-card.is-active p {
@@ -4480,10 +4515,10 @@ h1 {
   grid-column: 3;
   justify-self: start;
   white-space: nowrap;
-    color: #bbb;
+  color: #bbb;
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
-  line-height:140%;
+  line-height: 140%;
   align-items: baseline;
 }
 
@@ -4571,7 +4606,7 @@ h1 {
     margin: 0
   }
 
-  
+
 
   :is(.page-home, .page-industries, .page-contacts) .quote-card,
   :is(.page-home, .page-industries, .page-contacts) .quote-card.is-active {
@@ -5177,7 +5212,7 @@ body.menu-open .site-header>a::after {
 
 .services-benefits {
   background: var(--silver-100);
-  padding:140px 0;
+  padding: 140px 0;
 }
 
 .service-benefit-grid {
@@ -5478,7 +5513,8 @@ body.menu-open .site-header>a::after {
 
 .contact-intro {
   color: var(--silver-500);
-  padding-top: 0
+  padding-top: 0;
+  padding-bottom: 100px;
 }
 
 .contact-intro h1 {
@@ -5489,8 +5525,8 @@ body.menu-open .site-header>a::after {
 }
 
 .contact-intro .lede {
-    font-size: var(--body-large);
-    line-height: var(--line-body-large);
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
 }
 
 .contact-details {
@@ -5593,9 +5629,9 @@ body.menu-open .site-header>a::after {
 
 .contact-upload small {
   display: block;
-font-size: var(--body);
-    line-height: var(--line-body);
-    color: var(--silver-600);
+  font-size: var(--body);
+  line-height: var(--line-body);
+  color: var(--silver-600);
 }
 
 .upload-label {
@@ -5933,9 +5969,9 @@ font-size: var(--body);
 
 .contact-checkbox input:checked+.contact-check {
   visibility: visible;
-  background:var(--primary-300);
-    border: 1px solid var(--primary-300);
-    border-radius: 2px;
+  background: var(--primary-300);
+  border: 1px solid var(--primary-300);
+  border-radius: 2px;
 }
 
 .contact-checkbox input:focus-visible {
@@ -5982,8 +6018,8 @@ font-size: var(--body);
 }
 
 .material-detail-copy .eyebrow {
-font-size: var(--body);
-    line-height: var(--line-body);
+  font-size: var(--body);
+  line-height: var(--line-body);
   color: var(--silver-700);
   margin-bottom: 10px
 }
@@ -5994,8 +6030,8 @@ font-size: var(--body);
 }
 
 .material-detail-copy .lede {
-font-size: var(--body-large);
-    line-height: var(--line-body-large);
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
   color: var(--silver-700);
   max-width: 418px;
   margin-bottom: 40px
@@ -6301,7 +6337,7 @@ font-size: var(--body-large);
 }
 
 .industry-detail-copy {
-  padding-top:470px;
+  padding-top: 470px;
   padding-bottom: 150px;
   max-width: 850px
 }
@@ -6311,27 +6347,28 @@ font-size: var(--body-large);
   margin-bottom: 24px
 }
 
-.industry-detail-copy.structural .lede,  .industry-detail-copy .lede{
+.industry-detail-copy.structural .lede,
+.industry-detail-copy .lede {
   color: var(--silver-800);
-font-size: var(--body-large);
-    line-height: var(--line-body-large);
-     min-width: 328px; 
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
+  min-width: 328px;
 }
 
 .rv-wd {
-    max-width: 273px;
+  max-width: 273px;
 }
 
 .cab-wd {
-   max-width: 328px; 
+  max-width: 328px;
 }
 
 .furn-wd {
-   max-width: 518px; 
+  max-width: 518px;
 }
 
-.industry-detail-copy.structural .lede{
-     max-width: 480px; 
+.industry-detail-copy.structural .lede {
+  max-width: 480px;
 }
 
 .industry-detail-intro {
@@ -6435,7 +6472,7 @@ font-size: var(--body-large);
   top: 7px;
   left: 0;
   width: 16px;
-  height:2px;
+  height: 2px;
   background: currentColor
 }
 
@@ -6771,8 +6808,9 @@ font-size: var(--body-large);
     top: auto;
     right: auto;
     width: 100%;
-    margin-top: 48px;
-    margin-bottom: 0
+    margin-top: 0;
+    margin-bottom: 48px;
+
   }
 
   .contact-routing {
@@ -6841,7 +6879,7 @@ font-size: var(--body-large);
     padding-top: 0
   }
 
-  
+
 
   :is(.page-home, .page-industries) .quote-card {
     min-height: 353px;
@@ -7314,6 +7352,7 @@ font-size: var(--body-large);
     --fade-duration: 0s;
   }
 }
+
 /* Home: "Close to your plant" header, as designed (desktop only; tablet/mobile keep the stacked layout) */
 @media(min-width:1280px) {
   .page-home .locations-head {
@@ -7496,12 +7535,29 @@ body.menu-open .site-header {
   animation-delay: .08s
 }
 
-.image-menu[open] .menu-item:nth-child(1) { animation-delay: .1s }
-.image-menu[open] .menu-item:nth-child(2) { animation-delay: .15s }
-.image-menu[open] .menu-item:nth-child(3) { animation-delay: .2s }
-.image-menu[open] .menu-item:nth-child(4) { animation-delay: .25s }
-.image-menu[open] .menu-item:nth-child(5) { animation-delay: .3s }
-.image-menu[open] .menu-item:nth-child(6) { animation-delay: .35s }
+.image-menu[open] .menu-item:nth-child(1) {
+  animation-delay: .1s
+}
+
+.image-menu[open] .menu-item:nth-child(2) {
+  animation-delay: .15s
+}
+
+.image-menu[open] .menu-item:nth-child(3) {
+  animation-delay: .2s
+}
+
+.image-menu[open] .menu-item:nth-child(4) {
+  animation-delay: .25s
+}
+
+.image-menu[open] .menu-item:nth-child(5) {
+  animation-delay: .3s
+}
+
+.image-menu[open] .menu-item:nth-child(6) {
+  animation-delay: .35s
+}
 
 .image-menu nav a {
   transition: color .5s ease, translate .5s cubic-bezier(.22, 1, .36, 1)
@@ -7778,6 +7834,7 @@ body.menu-open .site-header {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .acc-item summary,
   .industry-detail-item summary {
     transition: none;
@@ -7911,13 +7968,33 @@ body.menu-open .site-header {
   max-width: 160px;
 }
 
-.page-about .timeline-first li:nth-child(2) p { max-width: 183px; }
-.page-about .timeline-first li:nth-child(3) p { max-width: 146px; }
-.page-about .timeline-first li:nth-child(4) p { max-width: 135px; }
-.page-about .timeline-first li:nth-child(5) p { max-width: 113px; }
-.page-about .timeline-second li:nth-child(1) p { max-width: 150px; }
-.page-about .timeline-second li:nth-child(3) p { max-width: 154px; }
-.page-about .timeline-second li:nth-child(4) p { max-width: 228px; }
+.page-about .timeline-first li:nth-child(2) p {
+  max-width: 183px;
+}
+
+.page-about .timeline-first li:nth-child(3) p {
+  max-width: 146px;
+}
+
+.page-about .timeline-first li:nth-child(4) p {
+  max-width: 135px;
+}
+
+.page-about .timeline-first li:nth-child(5) p {
+  max-width: 113px;
+}
+
+.page-about .timeline-second li:nth-child(1) p {
+  max-width: 150px;
+}
+
+.page-about .timeline-second li:nth-child(3) p {
+  max-width: 154px;
+}
+
+.page-about .timeline-second li:nth-child(4) p {
+  max-width: 228px;
+}
 
 .page-about .sustainability h2.headline-normal {
   font-size: 53px;
@@ -7925,9 +8002,17 @@ body.menu-open .site-header {
   line-height: var(--line-display-small);
 }
 
-.page-about .sustainability .grade:nth-child(1) p { max-width: 210px; }
-.page-about .sustainability .grade:nth-child(2) p { max-width: 197px; }
-.page-about .sustainability .grade:nth-child(3) p { max-width: 200px; }
+.page-about .sustainability .grade:nth-child(1) p {
+  max-width: 210px;
+}
+
+.page-about .sustainability .grade:nth-child(2) p {
+  max-width: 197px;
+}
+
+.page-about .sustainability .grade:nth-child(3) p {
+  max-width: 200px;
+}
 
 .page-about .family .split-copy.bg-dark .link-arrow {
   font-weight: 400;
@@ -8016,6 +8101,20 @@ body.menu-open .site-header {
   min-height: 0;
 }
 
+/* About journey, desktop: the content sticks in place while the lines fill; the ::after spacer is the pinned scroll distance. */
+@media (min-width: 768px) {
+  .page-about .journey.is-pinned > .container {
+    position: sticky;
+    top: var(--pin-top, 0px);
+  }
+
+  .page-about .journey.is-pinned::after {
+    content: "";
+    display: block;
+    height: var(--pin-distance, 0px);
+  }
+}
+
 /* About journey: scroll-driven fill (see main.js). --fill is the filled length of each line. */
 .page-about .timeline-first::before,
 .page-about .timeline-second::before {
@@ -8057,6 +8156,7 @@ body.menu-open .site-header {
 }
 
 @media(max-width:767px) {
+
   .page-about .timeline-first::before,
   .page-about .timeline-second::before {
     left: 0;
@@ -8078,7 +8178,7 @@ body.menu-open .site-header {
 
 /* Contacts — match Figma (node 2652:23130) */
 .page-contacts .contact-hero-grid {
-  padding-top: 196px;
+  /* padding-top: 196px; */
 }
 
 .page-contacts .contact-intro .lede {
@@ -8202,9 +8302,17 @@ body.menu-open .site-header {
   line-height: var(--line-title);
 }
 
-.page-services .service-benefit-grid .grade:nth-child(1) p { max-width: 206px; }
-.page-services .service-benefit-grid .grade:nth-child(2) p { max-width: 200px; }
-.page-services .service-benefit-grid .grade:nth-child(3) p { max-width: 211px; }
+.page-services .service-benefit-grid .grade:nth-child(1) p {
+  max-width: 206px;
+}
+
+.page-services .service-benefit-grid .grade:nth-child(2) p {
+  max-width: 200px;
+}
+
+.page-services .service-benefit-grid .grade:nth-child(3) p {
+  max-width: 211px;
+}
 
 .page-services .services-materials .section-head {
   align-items: flex-end;
@@ -8225,7 +8333,7 @@ body.menu-open .site-header {
 }
 
 :is(.page-industries, .page-services) .trusted-tags {
-  column-gap: 29px;
+  column-gap: 28px;
 }
 
 /* Home materials: single-row horizontal carousel below desktop widths.
@@ -8287,6 +8395,7 @@ body.menu-open .site-header {
 
 /* Home hero on mobile: full viewport height, copy bottom-aligned with 45px padding. */
 @media (max-width: 767px) {
+
   .hero-home,
   .hero-home .hero-inner {
     min-height: 100vh;
@@ -8309,6 +8418,7 @@ body.menu-open .site-header {
 
 /* Home on mobile: every section below the hero has 80px top/bottom padding. */
 @media (max-width: 767px) {
+
   .page-home .home-materials,
   .page-home .production,
   .page-home .processes,
@@ -8635,6 +8745,7 @@ body.menu-open .site-header {
 
 /* Stacked split sections (mobile): let them grow with their content instead of spilling over the next section. */
 @media (max-width: 767px) {
+
   .split.family,
   .contact-careers,
   .material-quote,
@@ -8663,19 +8774,19 @@ body.menu-open .site-header {
   min-height: 0;
   max-height: none;
   padding-top: 140px;
-  padding-bottom: 45px;
+  /* padding-bottom: 45px; */
   align-items: flex-end
 }
 
-.material-detail-hero > .container,
-.industry-detail-hero > .container {
+.material-detail-hero>.container,
+.industry-detail-hero>.container {
   width: 100%
 }
 
 .material-detail-copy,
 .industry-detail-copy {
   padding-top: 140px;
-  padding-bottom: 45px
+  /* padding-bottom: 45px */
 }
 
 /* Industries + Contacts banners follow the same rule: at least a full screen, content kept 45px from the bottom. */
@@ -8683,13 +8794,13 @@ body.menu-open .site-header {
   min-height: 100vh;
   min-height: 100svh;
   padding-top: 140px;
-  padding-bottom: 45px;
+  /* padding-bottom: 45px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end
 }
 
-.industries-hero > .container {
+.industries-hero>.container {
   width: 100%
 }
 
@@ -8699,8 +8810,8 @@ body.menu-open .site-header {
 
 .contact-hero {
   height: auto;
-  min-height: 100vh;
-  min-height: 100svh;
+  /* min-height: 100vh;
+  min-height: 100svh; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end
@@ -8709,23 +8820,25 @@ body.menu-open .site-header {
 .page-contacts .contact-hero-grid {
   width: 100%;
   height: auto;
-  padding-top: 140px;
-  padding-bottom: 45px
+  /* padding-top: 140px;
+  padding-bottom: 45px */
 }
 
 @media (min-width: 768px) {
+
   /* The form joins the flow (no longer pinned 200px from the top) so a tall form grows the banner. */
   .page-contacts .contact-hero-grid {
-    align-items: end
+    align-items: flex-start
   }
 
   .page-contacts .contact-form {
-    position: relative;
-    top: auto;
-    right: auto;
+    position: absolute;
+    top: 200px;
+    right: 0;
     width: 100%;
     margin: 0;
-    align-self: end
+    align-self: end;
+    max-width: 606px;
   }
 }
 
@@ -8768,6 +8881,7 @@ body.menu-open .site-header {
 }
 
 @media (max-width: 767px) {
+
   .trusted-rail .trusted-card,
   .trusted-rail .trusted-card.is-expanded {
     height: 420px
@@ -8841,14 +8955,37 @@ body.menu-open .site-header {
     display: none
   }
 
-  #tab-laminated { order: 1 }
-  #panel-laminated { order: 2 }
-  #tab-particle-mdf { order: 3 }
-  #panel-particle-mdf { order: 4 }
-  #tab-plywood-osb { order: 5 }
-  #panel-plywood-osb { order: 6 }
-  #tab-solid-lumber { order: 7 }
-  #panel-solid-lumber { order: 8 }
+  #tab-laminated {
+    order: 1
+  }
+
+  #panel-laminated {
+    order: 2
+  }
+
+  #tab-particle-mdf {
+    order: 3
+  }
+
+  #panel-particle-mdf {
+    order: 4
+  }
+
+  #tab-plywood-osb {
+    order: 5
+  }
+
+  #panel-plywood-osb {
+    order: 6
+  }
+
+  #tab-solid-lumber {
+    order: 7
+  }
+
+  #panel-solid-lumber {
+    order: 8
+  }
 }
 
 /* About journey, mobile: a horizontal strip where each swipe lands on the next year. */
@@ -8964,7 +9101,8 @@ body.menu-open .site-header {
   }
 
   .site-footer .footer-contact .socials {
-    margin-top: 28px /* + 20px row gap = 48px */
+    margin-top: 28px
+      /* + 20px row gap = 48px */
   }
 
   .site-footer .footer-mid,
@@ -8975,9 +9113,29 @@ body.menu-open .site-header {
 
 /* Mobile: the header pill and the open menu span the same width as the page container. */
 @media (max-width: 767px) {
+
   .site-header,
   .image-menu {
     width: calc(100% - 2 * var(--gutter));
     max-width: none
   }
 }
+/* All Industries accordion items use the supplied image/copy/facts layout. */
+.page-industries .industry-supply .acc-item .acc-body{grid-template-columns:354px minmax(0,1fr) 480px}
+@media(max-width:1279px){.page-industries .industry-supply .acc-item .acc-body{grid-template-columns:30% minmax(0,1fr) 38%}}
+@media(max-width:767px){.page-industries .industry-supply .acc-item .acc-body{grid-template-columns:1fr}}
+
+@media(max-width:1279px){.page-industries .industry-supply .acc-photo{width:100%;max-width:354px}}
+@media(max-width:767px){.page-industries .industry-supply .acc-photo{grid-column:auto;grid-row:auto;height:auto;aspect-ratio:354/236}.page-industries .industry-supply .acc-facts{grid-column:auto}}
+
+/* Accordion labels stay visible when a panel opens; no nested scroll reveal. */
+.acc-body .eyebrow.reveal,.acc-body .eyebrow{opacity:1;animation:none;translate:none}
+
+/* Shared navigation state wins over submenu base colors on every page. */
+.image-menu nav a.is-selected,
+.image-menu nav a[aria-current="page"],
+.image-menu nav a:hover,
+.image-menu nav a:focus-visible,
+.image-menu .menu-submenu a.is-selected,
+.image-menu .menu-submenu a:hover,
+.image-menu .menu-submenu a:focus-visible{color:var(--primary-800)}

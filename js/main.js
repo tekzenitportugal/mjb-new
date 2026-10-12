@@ -50,16 +50,23 @@
     window.addEventListener('resize', () => setGroup(groups.find(group => group.classList.contains('is-open'))));
     if (document.fonts) document.fonts.ready.then(() => setGroup(groups.find(group => group.classList.contains('is-open'))));
     const syncSelection = () => {
-      const page = location.pathname.split('/').pop() || 'index.html';
-      const exact = page + location.hash;
-      const selected = links.find(link => { const url = new URL(link.getAttribute('href'), location.href); return url.pathname.split('/').pop() + url.hash === exact; }) || links.find(link => new URL(link.getAttribute('href'), location.href).pathname.split('/').pop() === page);
+      const normalizePage = url => {
+        let page = decodeURIComponent(url.pathname).split('/').filter(Boolean).pop() || 'index.html';
+        if (!page.includes('.')) page += '.html';
+        return page;
+      };
+      const current = new URL(location.href);
+      const candidates = links.map(link => ({ link, url: new URL(link.getAttribute('href'), location.href) }));
+      const match = candidates.find(({url}) => url.origin === current.origin && normalizePage(url) === normalizePage(current) && url.hash === current.hash)
+        || candidates.find(({url}) => url.origin === current.origin && normalizePage(url) === normalizePage(current));
+      const selected = match?.link;
       links.forEach(link => {
         const active = link === selected;
         link.classList.toggle('is-selected', active);
-        if (active) link.setAttribute('aria-current', location.hash ? 'location' : 'page');
+        if (active) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
       });
-      if (selected && name && !document.body.classList.contains('page-material-detail')) name.textContent = selected.dataset.menuLabel;
+      if (selected && name) name.textContent = selected.dataset.menuLabel || selected.textContent.trim();
     };
     const close = () => { if (menu.open) menu.close(); };
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -238,6 +245,24 @@
       });
     };
     track?.addEventListener("scroll", () => requestAnimationFrame(syncTrack), { passive: true });
+    // Desktop: the section pins (sticky) for PIN px of scrolling while the lines fill, then releases.
+    const journey = document.querySelector('.page-about .journey');
+    const pinBox = journey?.querySelector(':scope > .container');
+    const PIN = 1400;
+    let pinTop = 0;
+    let pinStart = 0;
+    const layoutPin = () => {
+      const pinned = !phone.matches && !!pinBox;
+      journey?.classList.toggle('is-pinned', pinned);
+      if (!pinned) return;
+      const header = document.querySelector('.site-header');
+      const headerBottom = Math.max(header ? header.getBoundingClientRect().bottom : 0, 0);
+      const h = pinBox.offsetHeight;
+      pinTop = Math.min(Math.max(headerBottom, (window.innerHeight - h) / 2), window.innerHeight - h);
+      pinStart = parseFloat(getComputedStyle(journey).paddingTop);
+      journey.style.setProperty('--pin-top', pinTop + 'px');
+      journey.style.setProperty('--pin-distance', PIN + 'px');
+    };
     const update = () => {
       if (phone.matches) { syncTrack(); return; }
       const anchor = window.innerHeight * 0.75;
@@ -250,13 +275,12 @@
         });
       } else {
         const [first, second] = journeyLists;
-        const firstTop = first.getBoundingClientRect().top;
-        const secondTop = second.getBoundingClientRect().top;
         const secondRect = second.getBoundingClientRect();
         const len1 = first.offsetWidth - 6;
         const len2 = second.offsetWidth + secondRect.left;
         // One scroll progress drives both rows in sequence: row 2 starts the moment row 1 is full.
-        const s = Math.min(Math.max((anchor - (firstTop - 60)) / (secondTop - firstTop + 600), 0), 1);
+        // Progress runs from the moment the section pins (0) to the moment it releases (1).
+        const s = Math.min(Math.max((pinTop - (journey.getBoundingClientRect().top + pinStart)) / PIN, 0), 1);
         const t1 = Math.min(s * 2, 1);
         const t2 = Math.min(Math.max(s * 2 - 1, 0), 1);
         fills = [
@@ -291,7 +315,10 @@
       requestAnimationFrame(() => { queued = false; update(); });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    const onResize = () => { layoutPin(); onScroll(); };
+    window.addEventListener('resize', onResize);
+    window.addEventListener('load', onResize);
+    layoutPin();
     update();
   }
 
@@ -576,7 +603,7 @@
     io.unobserve(entry.target);
   }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   const watch = (selector, cls) => document.querySelectorAll(selector).forEach(el => {
-    if (el.classList.contains('reveal') || el.classList.contains('reveal-img')) return;
+    if (el.closest('.acc-body') || el.classList.contains('reveal') || el.classList.contains('reveal-img')) return;
     // Stagger siblings that enter together (cards in a row, hero copy lines).
     const index = [...el.parentElement.children].indexOf(el);
     el.style.setProperty('--reveal-delay', `${Math.min(index, 5) * 0.08}s`);
@@ -703,7 +730,12 @@
     let timer;
     card.addEventListener('mouseenter', () => {
       if (!canHover.matches || radio.checked) return;
-      timer = setTimeout(() => trigger.click(), 90);
+      // Select without clicking the label: that would focus the hidden radio and scroll the page to it.
+      timer = setTimeout(() => {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+        card.click();
+      }, 90);
     });
     card.addEventListener('mouseleave', () => clearTimeout(timer));
   });
