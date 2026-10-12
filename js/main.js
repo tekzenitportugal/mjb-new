@@ -454,7 +454,7 @@
   });
 })();
 
-// A static-site inquiry handoff: visitors review and send the email themselves.
+// Inquiry form: file picker and validation (submission is not connected yet).
 (() => {
   const form = document.querySelector('.contact-form');
   if (!form) return;
@@ -492,11 +492,7 @@
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const body = ['Name: ' + data.get('name'), 'Company: ' + data.get('company'), 'Email: ' + data.get('email'), 'Phone: ' + (data.get('phone') || 'Not provided'), '', data.get('message')];
-    if (files.length) body.push('', 'Files to attach manually:', ...files.map(file => file.name));
-    status.textContent = 'Your email draft is opening. Review it and attach your files before sending. Nothing has been sent yet.';
-    window.location.href = 'mailto:info@mjbwood.com?subject=' + encodeURIComponent('Website inquiry — ' + data.get('company')) + '&body=' + encodeURIComponent(body.join('\n'));
+    // Placeholder: submission is not connected yet, so a valid form does nothing for now.
   });
 })();
 
