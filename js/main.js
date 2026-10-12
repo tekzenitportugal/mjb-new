@@ -375,7 +375,8 @@
       activateIndustry(card);
     });
   });
-  if (industryCards.length) activateIndustry(industryCards[0]);
+  // Industry cards start collapsed, except the first one on the homepage; one opens on hover, tap or selection.
+  if (industryCards.length) activateIndustry(document.body.classList.contains('page-home') ? industryCards[0] : null);
 
   const locationCards = [...document.querySelectorAll('.location-card')];
   const activateLocation = card => locationCards.forEach(item => item.classList.toggle('is-active', item === card));
@@ -613,18 +614,19 @@
   if (tabs.length < 2) return;
   const photos = ['group5', 'group4', 'group3', 'group6', 'group7'];
   const mexico = [
-    ['Delicias, MX', '(634) 474-54-34', '+526344745434', 'Libramiento Delicias Meoqui S/N KM 140, Nuevo Terrazas, Chihuahua C.P. 33020', null],
-    ['Mérida, MX', '(999) 424-07-79', '+529994240779', 'Tablaje Catastral No. 6233 Bodega #11, Parque Industrial del Sureste, Umán, Yucatán C.P. 97390', 'merida.webp'],
-    ['Mexico City', '+52 844 438 7100', '+528444387100', 'Av. Poniente 140 #859, Col. Industrial Vallejo, Azcapotzalco, Ciudad de México 02300', 'mexico-city.webp'],
-    ['Ocotlán, MX', '(392) 668-03-35', '+523926680335', 'Calle el Naranjo #49, Col. el Porvenir, Ocotlán, Jalisco C.P. 47882', 'ocotlan.webp'],
-    ['Puebla, MX', '+52 222 179 7490', '+522221797490', 'San Lorenzo Almecatla 300 Lote 6 Bodega 8, Parque Industrial JINT, Puebla 72710', 'puebla.webp'],
-    ['Saltillo, MX', '(844) 438-71-00', '+528444387100', 'Prolongación Juan Escutia #500, Col. Río Bravo, Saltillo, Coahuila C.P. 25220', 'saltillo.webp'],
-    ['Tijuana, MX', '(55) 5587-34-00', '+525555873400', 'Av. Recursos Hidráulicos #3 Parcela #189, Ejido Santiago Teyahualco, Tultepec, Estado de México C.P. 54980', 'tijuana.webp']
+    ['Delicias, MX', '(634) 474-54-34', '+526344745434', 'Libramiento Delicias Meoqui S/N KM 140, Nuevo Terrazas, Chihuahua C.P. 33020', null, 'MX-CHH'],
+    ['Mérida, MX', '(999) 424-07-79', '+529994240779', 'Tablaje Catastral No. 6233 Bodega #11, Parque Industrial del Sureste, Umán, Yucatán C.P. 97390', 'merida.webp', 'MX-YUC'],
+    ['Mexico City', '+52 844 438 7100', '+528444387100', 'Av. Poniente 140 #859, Col. Industrial Vallejo, Azcapotzalco, Ciudad de México 02300', 'mexico-city.webp', 'MX-DIF'],
+    ['Ocotlán, MX', '(392) 668-03-35', '+523926680335', 'Calle el Naranjo #49, Col. el Porvenir, Ocotlán, Jalisco C.P. 47882', 'ocotlan.webp', 'MX-JAL'],
+    ['Puebla, MX', '+52 222 179 7490', '+522221797490', 'San Lorenzo Almecatla 300 Lote 6 Bodega 8, Parque Industrial JINT, Puebla 72710', 'puebla.webp', 'MX-PUE'],
+    ['Saltillo, MX', '(844) 438-71-00', '+528444387100', 'Prolongación Juan Escutia #500, Col. Río Bravo, Saltillo, Coahuila C.P. 25220', 'saltillo.webp', 'MX-COA'],
+    ['Tijuana, MX', '(55) 5587-34-00', '+525555873400', 'Av. Recursos Hidráulicos #3 Parcela #189, Ejido Santiago Teyahualco, Tultepec, Estado de México C.P. 54980', 'tijuana.webp', 'MX-BCN']
   ];
   const activate = card => [...rail.children].forEach(item => item.classList.toggle('is-active', item === card));
-  const build = ([city, phone, tel, address, photo], index) => {
+  const build = ([city, phone, tel, address, photo, state], index) => {
     const card = document.createElement('article');
     card.className = 'location-card';
+    card.dataset.state = state;
     card.tabIndex = 0;
     card.setAttribute('aria-label', `${city} facility`);
     const img = document.createElement('img');
@@ -650,11 +652,13 @@
   const usCards = [...rail.children];
   const views = { us: usCards, mexico: mexico.map(build) };
   const labels = { us: 'US facilities', mexico: 'Mexico facilities' };
+  const map = document.querySelector('.map-art');
   const show = region => {
     tabs.forEach((tab, i) => tab.classList.toggle('active', (i === 0) === (region === 'us')));
     rail.replaceChildren(...views[region]);
     activate(views[region][0]);
     rail.setAttribute('aria-label', labels[region]);
+    if (map?.querySelector('.map-mx')) map.dataset.region = region;
     rail.dispatchEvent(new Event('carousel:refresh'));
   };
   tabs.forEach((tab, i) => tab.addEventListener('click', event => {
@@ -663,14 +667,14 @@
   }));
 })();
 
-// Map: the card being hovered, focused or selected darkens its state on the map.
+// Map: no state is highlighted by default; the card being hovered, focused or clicked darkens its state.
 (() => {
   const rail = document.querySelector('.location-rail');
   const states = [...document.querySelectorAll('.map-states path')];
   if (!rail || !states.length) return;
-  let hovered = null;
+  let hovered = null, picked = null;
   const sync = () => {
-    const card = hovered || rail.querySelector('.location-card.is-active');
+    const card = hovered || picked;
     const code = card?.dataset.state;
     states.forEach(path => path.classList.toggle('is-hot', path.dataset.state === code));
   };
@@ -679,9 +683,8 @@
   rail.addEventListener('mouseleave', () => { hovered = null; sync(); });
   rail.addEventListener('focusin', event => { hovered = cardOf(event); sync(); });
   rail.addEventListener('focusout', () => { hovered = null; sync(); });
-  rail.addEventListener('click', () => requestAnimationFrame(sync));
-  rail.addEventListener('carousel:refresh', sync);
-  new MutationObserver(sync).observe(rail, { attributes: true, subtree: true, attributeFilter: ['class'] });
+  rail.addEventListener('click', event => { picked = cardOf(event) || picked; sync(); });
+  rail.addEventListener('carousel:refresh', () => { hovered = picked = null; sync(); });
   sync();
 })();
 
@@ -745,6 +748,28 @@
     track.scrollBy({ left: step * Number(button.dataset.materialsNav), behavior: reduced.matches ? 'instant' : 'smooth' });
   }));
   track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  update();
+})();
+
+// Home industries carousel: round prev/next buttons next to "View all Industries" scroll the card rail.
+(() => {
+  const rail = document.querySelector('.trusted-rail');
+  const buttons = [...document.querySelectorAll('[data-trusted-nav]')];
+  if (!rail || !buttons.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const update = () => {
+    const max = rail.scrollWidth - rail.clientWidth - 1;
+    buttons.forEach(button => { button.disabled = Number(button.dataset.trustedNav) < 0 ? rail.scrollLeft <= 1 : rail.scrollLeft >= max; });
+  };
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const card = rail.querySelector('.trusted-card:not(.is-expanded)') || rail.querySelector('.trusted-card');
+    const step = card ? card.getBoundingClientRect().width + 24 : rail.clientWidth;
+    rail.scrollBy({ left: step * Number(button.dataset.trustedNav), behavior: reduced.matches ? 'instant' : 'smooth' });
+  }));
+  rail.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  rail.addEventListener('transitionend', update);
   window.addEventListener('resize', update);
   window.addEventListener('load', update);
   update();

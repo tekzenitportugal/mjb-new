@@ -7691,6 +7691,28 @@ body.menu-open .site-header {
   fill: var(--silver-500)
 }
 
+/* Mexico map: swapped in for the US map by the United States / Mexico switch. */
+.map-mx {
+  display: none
+}
+
+.map-art[data-region="mexico"] .map-mx {
+  display: block;
+  position: relative;
+  width: 90.5%;
+  margin: 0 auto
+}
+
+.map-mx img {
+  display: block;
+  width: 100%;
+  height: auto
+}
+
+.map-art[data-region="mexico"]>:is(img, .map-states) {
+  display: none
+}
+
 /* Room after the last industry card so it can scroll fully into view when expanded. */
 .trusted-rail {
   padding-right: 24px
@@ -9172,3 +9194,60 @@ body.menu-open .site-header {
 .page-about .communities{min-height:0}
 .btn,.order-split .btn,.contact-send{font-size:var(--body-large);line-height:var(--line-body-large);height:55px;min-height:0;max-height:55px;box-sizing:border-box;padding-block:10px}
 .btn.btn-dark:hover,.contact-form.is-ready:has(input[name="consent"]:checked) .contact-send:hover{background:var(--silver-700)}
+
+/* Home industries: prev/next arrows sit beside the "View all Industries" link, inside the container. */
+.trusted-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0
+}
+
+.trusted-nav {
+  display: flex;
+  gap: 12px
+}
+
+.trusted-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--silver-300);
+  color: var(--silver-800);
+  cursor: pointer;
+  transition: opacity .2s, transform .2s
+}
+
+.trusted-nav-btn.is-prev svg {
+  transform: scaleX(-1)
+}
+
+.trusted-nav-btn:disabled {
+  opacity: .4;
+  cursor: default
+}
+
+.trusted-nav-btn:not(:disabled):active {
+  transform: scale(.94)
+}
+
+@media(max-width:767px) {
+  .trusted-actions {
+    justify-content: space-between;
+    width: 100%
+  }
+}
+
+/* Home industries rail: starts aligned with the container's left edge, scrolls out past the left edge of
+   the browser, and ends with the last card aligned to the container's right edge. */
+.page-home .trusted-rail {
+  --gutter: max(20px, (100vw - 1236px) / 2);
+  width: calc(100% + 2 * var(--gutter));
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter)
+}
