@@ -2566,7 +2566,6 @@ address {
 
 .communities {
   background: var(--silver-500);
-  min-height: 972px;
   padding-block: 150px 120px;
 }
 
@@ -9139,3 +9138,37 @@ body.menu-open .site-header {
 .image-menu .menu-submenu a.is-selected,
 .image-menu .menu-submenu a:hover,
 .image-menu .menu-submenu a:focus-visible{color:var(--primary-800)}
+
+/* About community stories: full-width split carousel. */
+.community-carousel{position:relative;background:var(--silver-500);color:var(--silver-800)}
+.community-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;align-items:stretch}
+.community-track::-webkit-scrollbar{display:none}
+.community-slide{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:1fr 1fr;min-height:693px;scroll-snap-align:start;scroll-snap-stop:always}
+.community-slide-copy{padding:60px 110px 120px var(--gutter)}
+.community-badge{display:inline-block;background:var(--primary-50);color:var(--primary-900);border-radius:20px;padding:3px 8px;font-size:var(--label);line-height:var(--line-label);margin-bottom:16px}
+.community-slide h3{font-family:var(--font-heading);font-size:var(--headline-small);line-height:var(--line-headline-small);font-weight:500;margin:0 0 20px}
+.community-slide-copy>p{font-size:var(--body);line-height:25px;margin:0}
+.community-slide>img{width:100%;height:100%;min-height:693px;object-fit:cover}
+.community-quote{margin:56px 0 0}
+.community-quote blockquote{margin:0 0 24px;font-size:var(--body-large);line-height:var(--line-body-large);font-weight:500}
+.community-quote figcaption{font-size:var(--body);line-height:var(--line-body)}
+.community-slide-copy>.community-more{margin-top:80px;line-height:var(--line-body)}
+.community-more a{color:inherit;text-decoration:underline}
+.community-controls{position:absolute;bottom:60px;left:var(--gutter);display:flex;gap:5px}
+.community-controls button{position:relative;width:20px;height:24px;border:0;background:transparent;padding:0;cursor:pointer;transition:width .3s ease}
+.community-controls button::after{content:"";position:absolute;left:0;right:0;top:10px;height:5px;background:var(--silver-300);border-radius:5px}
+.community-controls button[aria-pressed=true]{width:70px}
+.community-controls button[aria-pressed=true]::after{background:var(--silver-700)}
+.community-controls button:focus-visible{outline:2px solid var(--silver-800);outline-offset:3px}
+@media(max-width:1279px){.community-slide-copy{padding-right:40px}.community-slide h3{font-size:var(--title-large);line-height:var(--line-title-large)}}
+@media(max-width:767px){.community-slide{grid-template-columns:1fr;align-content:start}.community-slide-copy{padding:40px 20px 80px}.community-slide>img{height:360px;min-height:0;grid-row:1}.community-slide-copy>p{line-height:var(--line-body-large)}.community-controls{top:380px;bottom:auto;left:20px}.community-quote{margin-top:32px}.community-slide-copy>.community-more{margin-top:32px}}
+@media(prefers-reduced-motion:reduce){.community-controls button{transition:none}}
+
+/* Full-bleed community slider and persistent floating navigation. */
+.page-about .communities{padding-top:0;padding-bottom:0}
+.site-header,.site-header.is-hidden{position:fixed;top:24px;transform:translateX(-50%)}
+
+/* Community height follows its slides; CTA typography and size are consistent. */
+.page-about .communities{min-height:0}
+.btn,.order-split .btn,.contact-send{font-size:var(--body-large);line-height:var(--line-body-large);height:55px;min-height:0;max-height:55px;box-sizing:border-box;padding-block:10px}
+.btn.btn-dark:hover,.contact-form.is-ready:has(input[name="consent"]:checked) .contact-send:hover{background:var(--silver-700)}

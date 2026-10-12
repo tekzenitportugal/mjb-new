@@ -581,18 +581,6 @@
 // and content eases in as it enters the viewport. Both are skipped for reduced motion.
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const header = document.querySelector('.site-header');
-  if (header) {
-    let last = window.scrollY, pending = false;
-    const update = () => {
-      const y = window.scrollY;
-      const hide = y > last && y > 120 && !document.body.classList.contains('menu-open');
-      if (Math.abs(y - last) > 6 || y < 120) header.classList.toggle('is-hidden', hide);
-      last = y; pending = false;
-    };
-    window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(update); } }, { passive: true });
-  }
-
   if (!('IntersectionObserver' in window)) return;
   const text = 'main h2, main .eyebrow, main .lede, main .hero-copy > *, main .section-head .link-arrow, main .split-copy > *';
   const cards = 'main .location-rail, main .review-window, main .mat-card, main .grade, main .trusted-rail, main .stat-row, main .process, main .industry-tile';
@@ -603,7 +591,7 @@
     io.unobserve(entry.target);
   }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   const watch = (selector, cls) => document.querySelectorAll(selector).forEach(el => {
-    if (el.closest('.acc-body') || el.classList.contains('reveal') || el.classList.contains('reveal-img')) return;
+    if (el.closest('.acc-body, .community-carousel') || el.classList.contains('reveal') || el.classList.contains('reveal-img')) return;
     // Stagger siblings that enter together (cards in a row, hero copy lines).
     const index = [...el.parentElement.children].indexOf(el);
     el.style.setProperty('--reveal-delay', `${Math.min(index, 5) * 0.08}s`);
@@ -791,4 +779,25 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
     }, 90);
   }, { passive: true });
   });
+})();
+
+// About community carousel: controls, keyboard navigation, and swipe synchronization.
+(() => {
+ const carousel=document.querySelector('.community-carousel');
+ if(!carousel)return;
+ const track=carousel.querySelector('.community-track');
+ const buttons=[...carousel.querySelectorAll('[data-community-slide]')];
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let current=0,queued=false;
+ const select=index=>track.scrollTo({left:track.clientWidth*index,behavior:reduced.matches?'instant':'smooth'});
+ buttons.forEach((button,index)=>button.addEventListener('click',()=>select(index)));
+ track.addEventListener('keydown',event=>{
+  if(event.target!==track)return;
+  if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();select(Math.max(0,Math.min(buttons.length-1,current+(event.key==='ArrowRight'?1:-1))));}
+ });
+ track.addEventListener('scroll',()=>{
+  if(queued)return;queued=true;
+  requestAnimationFrame(()=>{queued=false;current=Math.round(track.scrollLeft/track.clientWidth);buttons.forEach((button,index)=>button.setAttribute('aria-pressed',String(index===current)));});
+ },{passive:true});
+ window.addEventListener('resize',()=>track.scrollTo({left:track.clientWidth*current,behavior:'instant'}));
 })();
