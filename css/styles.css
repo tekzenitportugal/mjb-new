@@ -511,18 +511,27 @@ address {
   transition: background .2s, box-shadow .2s
 }
 
-.btn:hover {
-  box-shadow: 0 0 0 3px rgb(141 198 63 / .25)
+.btn {
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease
 }
 
+/* Button states (Figma): light button on dark -> silver-500 on hover; dark button -> silver-700 on hover. */
 .btn-light {
-  background: var(--primary-50);
+  background: var(--silver-50);
   color: var(--silver-800)
 }
 
+.btn-light:hover {
+  background: var(--silver-500)
+}
+
 .btn-dark {
-  background: var(--silver-800);
+  background: var(--silver-900);
   color: var(--primary-50)
+}
+
+.btn-dark:hover {
+  background: var(--silver-700)
 }
 
 .btn-outline {
@@ -573,8 +582,13 @@ address {
   height: 20px
 }
 
+.link-arrow {
+  transition: text-decoration-color .2s ease
+}
+
+/* Text link hover (Figma): only the underline turns green; the text and arrow stay the same. */
 .link-arrow:hover {
-  color: var(--primary-500)
+  text-decoration-color: #7fb239
 }
 
 .bg-dark .link-arrow .icon {
@@ -6037,7 +6051,7 @@ body.menu-open .site-header>a::after {
 
 .material-contact {
   background: var(--silver-900);
-  color: var(--silver-200);
+  color: var(--primary-50);
   font-size: var(--body-large);
   line-height: var(--line-body-large)
 }
@@ -9659,4 +9673,17 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 .anchor-target:focus,
 .anchor-target:focus-visible {
   outline: none
+}
+
+/* Dark "Contact Us" buttons: default silver-900, hover silver-700. */
+.material-contact:hover {
+  background: var(--silver-700)
+}
+
+.btn-outline:hover {
+  background: var(--silver-200)
+}
+
+.contact-form.is-ready:has(input[name="consent"]:checked) .contact-send {
+  background: var(--silver-900)
 }
