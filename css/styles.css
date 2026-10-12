@@ -7500,8 +7500,8 @@ body.menu-open .site-header>a::after {
 /* Waabi-style navigation and motion: floating pill with a soft ring that tucks away on
    scroll-down, a dropdown panel that unfolds from the pill, and scroll-in entrances. */
 .site-header {
-  box-shadow: 0 0 0 4px rgb(21 23 20 / .12);
-  transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease
+  box-shadow: none;
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1)
 }
 
 .site-header.is-hidden {
@@ -7517,7 +7517,7 @@ body.menu-open .site-header>a::after {
 }
 
 body.menu-open .site-header {
-  box-shadow: 0 0 0 4px rgb(21 23 20 / .2)
+  box-shadow: none
 }
 
 .image-menu[open] {
@@ -9291,7 +9291,7 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 .hero-coors .hero-inner {
   min-height: 784px;
   padding-top: 120px;
-  padding-bottom: 180px
+  padding-bottom: 150px
 }
 
 .hero-coors .hero-copy {
@@ -9495,5 +9495,166 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   .coors-slide.is-active,
   .coors-progress button {
     transition: none
+  }
+}
+
+/* MJB Imports page: reuses the Coors hero treatment; the intro statement and photo sit on the mist background. */
+.hero-imports .hero-bg {
+  object-position: 70% 40%
+}
+
+.hero-imports .hero-inner {
+  padding-bottom: 150px
+}
+
+.hero-imports .hero-copy {
+  width: 423px
+}
+
+.hero-imports .hero-copy h1 {
+  font-size: 52px;
+  line-height: 56px;
+  letter-spacing: -.52px
+}
+
+.imports-intro {
+  background: var(--silver-100);
+  padding-block: 120px
+}
+
+.imports-intro .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px
+}
+
+.imports-statement {
+  margin: 0;
+  max-width: 1236px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-medium);
+  font-size: var(--headline-small);
+  line-height: 40px;
+  color: var(--silver-600)
+}
+
+.imports-statement strong {
+  font-weight: inherit;
+  color: var(--silver-800)
+}
+
+.imports-photo {
+  display: block;
+  width: 982px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 982 / 664;
+  object-fit: cover;
+  border-radius: 12px
+}
+
+.imports-products .industry-detail-accordion {
+  margin-top: 80px
+}
+
+.imports-products .industry-detail-description a {
+  text-decoration: underline;
+  text-underline-offset: 3px
+}
+
+.imports-products .industry-detail-photo {
+  border-radius: 8px;
+  aspect-ratio: 354 / 250;
+  object-fit: cover
+}
+
+@media(max-width:767px) {
+  .imports-intro {
+    padding-block: 64px
+  }
+
+  .imports-intro .container {
+    gap: 48px
+  }
+
+  .imports-statement {
+    font-size: 24px;
+    line-height: 30px
+  }
+
+  .hero-imports .hero-copy {
+    width: 100%
+  }
+}
+
+/* MJB Mexico page: same hero/intro as Imports; two always-open product blocks instead of an accordion. */
+.hero-mexico .hero-bg {
+  object-position: 80% 55%
+}
+
+.hero-mexico .hero-copy {
+  width: 480px
+}
+
+.page-mexico .imports-intro .container {
+  gap: 50px
+}
+
+.imports-badge {
+  display: block;
+  width: 134px;
+  height: 90px;
+  mix-blend-mode: multiply
+}
+
+.mexico-products h2 {
+  max-width: 378px
+}
+
+.mexico-offers {
+  margin-top: 80px
+}
+
+.mexico-offer {
+  border-top: 2px solid var(--silver-700)
+}
+
+.mexico-offer h3 {
+  margin: 0;
+  padding: 12px 0 32px;
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  font-size: var(--title);
+  line-height: var(--line-title);
+  color: var(--silver-200)
+}
+
+.mexico-offer .industry-detail-body {
+  padding-bottom: 32px
+}
+
+.mexico-offer .industry-detail-photo {
+  aspect-ratio: auto;
+  object-fit: cover
+}
+
+.mexico-offer:nth-child(1) .industry-detail-photo {
+  height: 351px
+}
+
+.mexico-offer:nth-child(2) .industry-detail-photo {
+  height: 341px
+}
+
+@media(max-width:767px) {
+  .hero-mexico .hero-copy {
+    width: 100%
+  }
+
+  .mexico-offer .industry-detail-photo {
+    height: auto !important;
+    aspect-ratio: 354 / 340
   }
 }

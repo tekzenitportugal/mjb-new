@@ -817,6 +817,60 @@
   schedule();
 })();
 
+// In-page anchors (#id) scroll to their target without adding the hash to the URL. A link to
+// another page's anchor opens that page without the hash, then scrolls to the section once loaded.
+(() => {
+  const KEY = 'mjb-scroll-target';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const samePage = url => url.origin === location.origin && url.pathname.replace(/index.html$/, '') === location.pathname.replace(/index.html$/, '');
+  const scrollToId = (id, smooth) => {
+    const target = id && document.getElementById(decodeURIComponent(id));
+    if (!target) return false;
+    const behavior = smooth && !reduced.matches ? 'smooth' : 'auto';
+    if (target.classList.contains('is-pinned')) {
+      // A pinned section (About journey) holds its content centred once it sticks; land exactly where the pin
+      // begins so the timeline is centred on screen with nothing filled yet.
+      const style = getComputedStyle(target);
+      const pinTop = parseFloat(style.getPropertyValue('--pin-top')) || 0;
+      const top = target.getBoundingClientRect().top + window.scrollY + (parseFloat(style.paddingTop) || 0) - pinTop;
+      window.scrollTo({ top: Math.max(top, 0), behavior });
+    } else {
+      target.scrollIntoView({ behavior, block: 'start' });
+    }
+    if (!target.matches('a, button, input, select, textarea, [tabindex]')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    return true;
+  };
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.('a[href]');
+    if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
+    const href = link.getAttribute('href');
+    if (!href || !href.includes('#') || /^(mailto|tel):/i.test(href)) return;
+    let url;
+    try { url = new URL(href, location.href); } catch { return; }
+    const id = url.hash.slice(1);
+    if (url.origin !== location.origin) return;
+    if (!id) { if (href === '#') event.preventDefault(); return; }
+    event.preventDefault();
+    if (samePage(url)) {
+      scrollToId(id, true);
+    } else {
+      try { sessionStorage.setItem(KEY, id); } catch { /* storage blocked: fall back to the plain hash */ location.href = url.href; return; }
+      location.href = url.origin + url.pathname + url.search;
+    }
+  });
+  const arrive = () => {
+    let id = location.hash.slice(1);
+    try { id = sessionStorage.getItem(KEY) || id; sessionStorage.removeItem(KEY); } catch { /* ignore */ }
+    if (!id) return;
+    const go = () => { if (scrollToId(id, false) && location.hash) history.replaceState(null, '', location.pathname + location.search); };
+    go();
+    window.addEventListener('load', () => { go(); if (document.fonts) document.fonts.ready.then(go); }, { once: true });
+  };
+  arrive();
+})();
+
 // Footer copyright year.
 document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
