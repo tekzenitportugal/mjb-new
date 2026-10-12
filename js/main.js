@@ -82,10 +82,10 @@
       if (menu.open && !canHover.matches) close();
       else openMenu(event.detail > 0);
     });
-    // Desktop: open on hover over the header pill, close shortly after the pointer leaves both.
+    // Desktop: open on hover over the header pill, close after a short delay (600ms) once the pointer leaves both, so moving between items does not shut it.
     let hoverTimer;
     const hoverIn = () => { if (!canHover.matches) return; clearTimeout(hoverTimer); openMenu(true); };
-    const hoverOut = () => { if (!canHover.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 200); };
+    const hoverOut = () => { if (!canHover.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 600); };
     [header, menu].forEach(el => { el?.addEventListener('mouseenter', hoverIn); el?.addEventListener('mouseleave', hoverOut); });
     menu.addEventListener('close', () => { setOpen(false); });
     document.addEventListener('keydown', event => {
@@ -375,8 +375,8 @@
       activateIndustry(card);
     });
   });
-  // Industry cards start collapsed, except the first one on the homepage; one opens on hover, tap or selection.
-  if (industryCards.length) activateIndustry(document.body.classList.contains('page-home') ? industryCards[0] : null);
+  // The first card starts expanded; another opens on hover, tap or selection.
+  if (industryCards.length) activateIndustry(industryCards[0]);
 
   const locationCards = [...document.querySelectorAll('.location-card')];
   const activateLocation = card => locationCards.forEach(item => item.classList.toggle('is-active', item === card));
@@ -773,6 +773,48 @@
   window.addEventListener('resize', update);
   window.addEventListener('load', update);
   update();
+})();
+
+// Coors family story: the progress bars switch the slide (arrow keys too); it advances itself while idle.
+(() => {
+  const story = document.querySelector('.coors-story');
+  if (!story) return;
+  const slides = [...story.querySelectorAll('.coors-slide')];
+  const tabs = [...story.querySelectorAll('.coors-progress button')];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0, timer, paused = false;
+  const show = next => {
+    index = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === index);
+      slide.inert = i !== index;
+    });
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('is-active', i === index);
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+    });
+  };
+  const schedule = () => {
+    clearTimeout(timer);
+    if (reduced.matches || paused) return;
+    timer = setTimeout(() => { show(index + 1); schedule(); }, 9000);
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => { show(i); schedule(); });
+    tab.addEventListener('keydown', event => {
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      show(index + step); tabs[index].focus(); schedule();
+    });
+  });
+  story.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
+  story.addEventListener('mouseleave', () => { paused = false; schedule(); });
+  story.addEventListener('focusin', () => { paused = true; clearTimeout(timer); });
+  story.addEventListener('focusout', () => { paused = false; schedule(); });
+  show(0);
+  schedule();
 })();
 
 // Footer copyright year.

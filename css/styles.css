@@ -7559,11 +7559,7 @@ body.menu-open .site-header {
 }
 
 .image-menu nav a {
-  transition: color .5s ease, translate .5s cubic-bezier(.22, 1, .36, 1)
-}
-
-.image-menu .menu-primary:hover {
-  translate: 4px 0
+  transition: color .5s ease
 }
 
 @keyframes menu-unfold {
@@ -9244,10 +9240,260 @@ body.menu-open .site-header {
 
 /* Home industries rail: starts aligned with the container's left edge, scrolls out past the left edge of
    the browser, and ends with the last card aligned to the container's right edge. */
-.page-home .trusted-rail {
+:is(.page-home, .page-materials, .page-industries, .page-services) .trusted-rail {
   --gutter: max(20px, (100vw - 1236px) / 2);
   width: calc(100% + 2 * var(--gutter));
   margin-inline: calc(-1 * var(--gutter));
   padding-inline: var(--gutter);
   scroll-padding-inline: var(--gutter)
+}
+
+.trusted-actions-end {
+  justify-content: flex-end;
+  margin-bottom: 24px
+}
+
+.industries-hero .trusted-nav-btn {
+  background: rgba(255, 255, 255, .14);
+  color: #fff
+}
+
+/* Fixtures & furniture: same window-corner zoom as the homepage card, on every page with the industries rail. */
+:is(.page-materials, .page-industries, .page-services) .trusted-card:nth-child(2) .trusted-photo {
+  width: 142%;
+  height: 142%;
+  max-width: none;
+  object-position: 51% 0
+}
+
+/* Accordions: body paragraphs are 15px everywhere (eyebrow labels keep their own style). */
+body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 22px
+}
+
+/* Coors family page: hero over the brewery photo, and the "legacy of innovation" story slider. */
+.hero-coors {
+  min-height: 784px;
+  background: var(--silver-500)
+}
+
+.hero-coors .hero-bg {
+  object-fit: cover;
+  object-position: 30% 28%
+}
+
+.hero-coors .hero-overlay {
+  background: linear-gradient(90deg, rgba(215, 220, 211, .96) 0%, rgba(215, 220, 211, .82) 28%, rgba(215, 220, 211, .35) 52%, rgba(215, 220, 211, 0) 72%), linear-gradient(0deg, rgba(175, 180, 170, .35), rgba(175, 180, 170, 0) 40%);
+  mix-blend-mode: normal
+}
+
+.hero-coors .hero-inner {
+  min-height: 784px;
+  padding-top: 120px;
+  padding-bottom: 180px
+}
+
+.hero-coors .hero-copy {
+  width: 480px
+}
+
+.hero-coors .hero-copy h1 {
+  color: var(--silver-800)
+}
+
+.hero-coors .hero-copy .lede {
+  color: var(--silver-800)
+}
+
+.coors-story {
+  background: var(--silver-100);
+  min-height: 784px;
+  display: flex;
+  align-items: center;
+  padding-block: 100px
+}
+
+.coors-story .container {
+  position: relative;
+  width: 100%
+}
+
+.coors-slides {
+  display: grid
+}
+
+.coors-slide {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 480px 606px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s
+}
+
+.coors-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .5s ease
+}
+
+.coors-copy {
+  max-width: 546px
+}
+
+.coors-kicker {
+  margin: 0 0 20px;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-medium);
+  font-size: var(--title);
+  line-height: var(--line-title);
+  color: var(--silver-700)
+}
+
+.coors-copy h2 {
+  margin: 0 0 30px;
+  font-size: var(--headline-small);
+  line-height: 40px;
+  letter-spacing: 0;
+  color: var(--silver-800)
+}
+
+.coors-copy p:not(.coors-kicker) {
+  margin: 0;
+  max-width: 480px;
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
+  color: var(--silver-800)
+}
+
+.coors-copy p:not(.coors-kicker)+p {
+  margin-top: 18px
+}
+
+.coors-photo {
+  display: block;
+  width: 606px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 606 / 409;
+  object-fit: cover;
+  border-radius: 12px
+}
+
+/* Progress: a vertical rail left of the copy; the open step is the long bar. */
+.coors-progress {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 56px);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.coors-progress button {
+  position: relative;
+  width: 3px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: #d9d9d9;
+  cursor: pointer;
+  transition: height .4s ease, background-color .4s ease
+}
+
+.coors-progress button::before {
+  content: "";
+  position: absolute;
+  inset: -3px -10px
+}
+
+.coors-progress button.is-active {
+  height: 50px;
+  background: var(--silver-600)
+}
+
+.coors-progress button:focus-visible {
+  outline: 2px solid var(--primary-800);
+  outline-offset: 3px
+}
+
+@media(max-width:1399px) {
+  .coors-progress {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    margin-bottom: 40px
+  }
+
+  .coors-progress button {
+    width: 10px;
+    height: 3px
+  }
+
+  .coors-progress button.is-active {
+    width: 50px;
+    height: 3px
+  }
+}
+
+@media(max-width:1279px) {
+  .coors-slide {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 606px);
+    gap: 40px
+  }
+}
+
+@media(max-width:899px) {
+  .coors-slide {
+    grid-template-columns: 1fr;
+    align-items: start
+  }
+
+  .coors-photo {
+    order: -1
+  }
+}
+
+@media(max-width:767px) {
+  .hero-coors {
+    min-height: 620px
+  }
+
+  .hero-coors .hero-bg {
+    object-position: 35% 40%
+  }
+
+  .hero-coors .hero-inner {
+    min-height: 620px;
+    padding-bottom: 80px
+  }
+
+  .hero-coors .hero-copy {
+    width: 100%
+  }
+
+  .coors-story {
+    min-height: 0;
+    padding-block: 64px
+  }
+
+  .coors-copy h2 {
+    font-size: 28px;
+    line-height: 34px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+  .coors-slide,
+  .coors-slide.is-active,
+  .coors-progress button {
+    transition: none
+  }
 }
