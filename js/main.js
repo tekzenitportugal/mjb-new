@@ -977,3 +977,38 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
  },{rootMargin:'-120px 0px -60% 0px'});
  sections.forEach(section=>observer.observe(section));
 })();
+
+// Join the waitlist modal (home page): open/close, optional single-choice chips, submit to php/send-waitlist.php.
+(() => {
+  const modal = document.getElementById('waitlist');
+  if (!modal) return;
+  const form = modal.querySelector('.waitlist-form');
+  const status = form.querySelector('.waitlist-status');
+  const open = event => { event.preventDefault(); status.textContent = ''; modal.showModal(); form.elements.email.focus(); };
+  document.querySelectorAll('[data-waitlist-open]').forEach(trigger => trigger.addEventListener('click', open));
+  modal.querySelector('[data-waitlist-close]').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', event => { if (event.target === modal) modal.close(); });
+  // "I'm a…" is optional, so clicking the selected chip again clears it.
+  form.querySelectorAll('[data-deselectable] input[type="radio"]').forEach(radio => {
+    radio.addEventListener('mousedown', () => { radio.dataset.was = radio.checked ? '1' : ''; });
+    radio.addEventListener('click', () => { if (radio.dataset.was) radio.checked = false; });
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const email = form.elements.email;
+    if (!email.value.trim() || !email.validity.valid) {
+      status.classList.remove('is-success'); status.textContent = 'Please enter a valid email address.'; email.focus(); return;
+    }
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true; status.classList.add('is-success'); status.textContent = 'Sending…';
+    try {
+      const response = await fetch(form.dataset.action, { method: 'POST', body: new FormData(form) });
+      const result = await response.json().catch(() => ({}));
+      status.classList.toggle('is-success', response.ok);
+      status.textContent = result.message || (response.ok ? 'Thank you. You’re on the waitlist.' : 'Sorry, something went wrong. Please try again.');
+      if (response.ok) { form.reset(); setTimeout(() => { if (modal.open) modal.close(); }, 2500); }
+    } catch (error) {
+      status.classList.remove('is-success'); status.textContent = 'Network error. Please try again or email us directly.';
+    } finally { button.disabled = false; }
+  });
+})();

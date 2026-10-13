@@ -516,7 +516,7 @@
             <div class="split-copy">
                 <h2>A new way to order cabinets is coming</h2>
                 <p>Cato cabinets and shelving systems will soon be available to order directly from MJB.</p><a
-                    class="btn btn-light" href="#">Join the
+                    class="btn btn-light" href="files/contacts.html" data-waitlist-open aria-haspopup="dialog">Join the
                     Waitlist</a>
                 <p class="order-note">Upload a photo of your space and we’ll suggest the cabinets that fit.</p>
             </div><img class="split-photo split-min" src="assets/kitchen.png" alt="Cato kitchen cabinets" loading="lazy"
@@ -608,6 +608,44 @@
                         decoding="async"></a></span></div>
         </div>
     </footer>
+    <dialog class="waitlist-modal" id="waitlist" aria-labelledby="waitlist-title">
+        <form class="waitlist-form" method="post" data-action="php/send-waitlist.php" novalidate>
+            <button class="waitlist-close" type="button" aria-label="Close" data-waitlist-close><img src="assets/icons/x.svg" alt="" width="24" height="24"></button>
+            <p class="waitlist-eyebrow">Coming soon</p>
+            <h2 id="waitlist-title">Get early access</h2>
+            <p class="waitlist-intro">Be the first to know when Cato cabinets and shelving systems are available to order directly from MJB. We’ll only email you about Cato availability. By joining, you agree to our <a href="#">Privacy Policy</a>.</p>
+            <fieldset class="waitlist-group">
+                <legend>Country</legend>
+                <div class="waitlist-chips">
+                    <label class="waitlist-chip"><input type="radio" name="country" value="United States" checked><span>United States</span></label>
+                    <label class="waitlist-chip"><input type="radio" name="country" value="Mexico"><span>Mexico</span></label>
+                </div>
+            </fieldset>
+            <label class="waitlist-email"><input type="email" name="email" placeholder=" " autocomplete="email" maxlength="254" required><span>Email*</span></label>
+            <fieldset class="waitlist-group">
+                <legend>I’m a… <span>(optional)</span></legend>
+                <div class="waitlist-chips" data-deselectable>
+                    <label class="waitlist-chip"><input type="radio" name="role" value="Builder / contractor"><span>Builder / contractor</span></label>
+                    <label class="waitlist-chip"><input type="radio" name="role" value="Dealer"><span>Dealer</span></label>
+                    <label class="waitlist-chip"><input type="radio" name="role" value="Manufacturer"><span>Manufacturer</span></label>
+                    <label class="waitlist-chip"><input type="radio" name="role" value="Other"><span>Other</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="waitlist-group">
+                <legend>Interested in <span>(optional, select all that apply)</span></legend>
+                <div class="waitlist-chips">
+                    <label class="waitlist-chip"><input type="checkbox" name="interest[]" value="Cabinets"><span>Cabinets</span></label>
+                    <label class="waitlist-chip"><input type="checkbox" name="interest[]" value="Shelving"><span>Shelving</span></label>
+                    <label class="waitlist-chip"><input type="checkbox" name="interest[]" value="Millwork"><span>Millwork</span></label>
+                </div>
+            </fieldset>
+            <input class="waitlist-hp" type="text" name="hp_extra_note" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="waitlist-foot">
+                <p class="waitlist-status" role="status" aria-live="polite"></p>
+                <button class="btn btn-dark waitlist-submit" type="submit">Join the waitlist</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>
