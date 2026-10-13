@@ -5772,8 +5772,8 @@ body.menu-open .site-header>a::after {
 }
 
 .contact-route-grid p {
-  font-size: var(--title-small);
-  line-height: var(--line-title-small);
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
   max-width: 285px
 }
 
@@ -6143,8 +6143,8 @@ body.menu-open .site-header>a::after {
 
 .material-product-copy {
   max-width: 275px;
-  font-size: var(--body-large);
-  line-height: var(--line-body-large);
+  font-size: 15px;
+  line-height: 22px;
   color: var(--silver-400);
 }
 
@@ -6178,8 +6178,8 @@ body.menu-open .site-header>a::after {
 }
 
 .material-product-facts>div>p:last-child {
-  font-size: var(--body-large);
-  line-height: var(--line-body-large);
+  font-size: 15px;
+  line-height: 22px;
   color: var(--silver-400);
 }
 
@@ -7787,19 +7787,10 @@ body.menu-open .site-header {
   }
 }
 
-/* Figma parity for Materials subpages. */
-.material-application h2 {
+/* Figma parity for Materials subpages: one shared width for all intro statements (material + industry pages). */
+.material-application h2,
+.industry-detail-intro h2 {
   max-width: 1236px
-}
-
-.material-application h2 .desk {
-  display: none
-}
-
-@media(min-width:1101px) {
-  .material-application h2 .desk {
-    display: inline
-  }
 }
 
 .material-product+.material-product h3 {
@@ -9807,6 +9798,8 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 }
 
 .contact-careers .careers-copy p {
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
   max-width: 38ch;
 }
 
@@ -11287,4 +11280,10 @@ html:has(.waitlist-modal[open]) {
   .sus-acc-toggle::after {
     transition: none
   }
+}
+
+/* Millwork & Doors: "Made across America" paragraph at body-large. */
+.page-millwork-doors .industry-detail-feature .split-copy>p:not(.eyebrow) {
+  font-size: var(--body-large);
+  line-height: var(--line-body-large)
 }
