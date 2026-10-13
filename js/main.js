@@ -454,7 +454,7 @@
   });
 })();
 
-// Inquiry form: file picker and validation (submission is not connected yet).
+// Inquiry form: file picker and validation and submission to php/send-inquiry.php.
 (() => {
   const form = document.querySelector('.contact-form');
   if (!form) return;
@@ -489,10 +489,21 @@
   ['dragenter', 'dragover'].forEach(type => dropzone.addEventListener(type, event => { event.preventDefault(); dropzone.classList.add('is-dragging'); }));
   dropzone.addEventListener('dragleave', event => { if (!dropzone.contains(event.relatedTarget)) dropzone.classList.remove('is-dragging'); });
   dropzone.addEventListener('drop', event => { event.preventDefault(); dropzone.classList.remove('is-dragging'); addFiles(event.dataTransfer.files); });
-  form.addEventListener('submit', event => {
+  form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    // Placeholder: submission is not connected yet, so a valid form does nothing for now.
+    const button = form.querySelector('button[type="submit"]');
+    const data = new FormData(form);
+    files.forEach(file => data.append('files[]', file));
+    button.disabled = true; status.textContent = 'Sending…';
+    try {
+      const response = await fetch(form.dataset.action || 'php/send-inquiry.php', { method: 'POST', body: data });
+      const result = await response.json().catch(() => ({}));
+      status.textContent = result.message || (response.ok ? 'Thank you. Your inquiry has been sent.' : 'Sorry, something went wrong. Please try again.');
+      if (response.ok) { form.reset(); files = []; renderFiles(); form.dispatchEvent(new Event('change')); }
+    } catch (error) {
+      status.textContent = 'Network error. Please try again or email us directly.';
+    } finally { button.disabled = false; }
   });
 })();
 
