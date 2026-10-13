@@ -9737,3 +9737,41 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
     font-size: 96px
   }
 }
+
+.footer-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 15px;
+  /* + 15px grid gap = 30px below address */
+  font-size: 15px;
+  line-height: 22px
+}
+
+.footer-terms a {
+  color: rgb(255 255 255 / 60%);
+  text-decoration: none
+}
+
+.footer-terms a:hover {
+  color: white
+}
+
+.site-footer .footer-contact .footer-terms+.socials {
+  margin-top: 25px
+  /* + 15px grid gap = 40px below terms */
+}
+
+@media (max-width: 767px) {
+  .site-footer .footer-contact .footer-terms {
+    grid-column: 1 / -1;
+    gap: 8px 20px;
+    margin-top: 10px
+    /* + 20px row gap = 30px */
+  }
+
+  .site-footer .footer-contact .footer-terms+.socials {
+    margin-top: 20px
+    /* + 20px row gap = 40px */
+  }
+}
