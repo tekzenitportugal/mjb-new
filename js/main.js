@@ -454,7 +454,7 @@
   });
 })();
 
-// Inquiry form: file picker and validation and submission to php/send-inquiry.php.
+// Inquiry form: file picker and validation and submission to /api/send-inquiry.
 (() => {
   const form = document.querySelector('.contact-form');
   if (!form) return;
@@ -497,7 +497,7 @@
     files.forEach(file => data.append('files[]', file));
     button.disabled = true; status.textContent = 'Sending…';
     try {
-      const response = await fetch(form.dataset.action || 'php/send-inquiry.php', { method: 'POST', body: data });
+      const response = await fetch(form.dataset.action || '/api/send-inquiry', { method: 'POST', body: data });
       const result = await response.json().catch(() => ({}));
       status.textContent = result.message || (response.ok ? 'Thank you. Your inquiry has been sent.' : 'Sorry, something went wrong. Please try again.');
       if (response.ok) { form.reset(); files = []; renderFiles(); form.dispatchEvent(new Event('change')); }
