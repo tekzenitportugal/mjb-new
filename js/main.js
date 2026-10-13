@@ -495,11 +495,12 @@
     const button = form.querySelector('button[type="submit"]');
     const data = new FormData(form);
     files.forEach(file => data.append('files[]', file));
-    button.disabled = true; status.textContent = 'Sending…';
+    button.disabled = true; status.classList.remove('is-success'); status.textContent = 'Sending…';
     try {
       const response = await fetch(form.dataset.action || '../php/send-inquiry.php', { method: 'POST', body: data });
       const result = await response.json().catch(() => ({}));
       status.textContent = result.message || (response.ok ? 'Thank you. Your inquiry has been sent.' : 'Sorry, something went wrong. Please try again.');
+      status.classList.toggle('is-success', response.ok);
       if (response.ok) { form.reset(); files = []; renderFiles(); form.dispatchEvent(new Event('change')); }
     } catch (error) {
       status.textContent = 'Network error. Please try again or email us directly.';

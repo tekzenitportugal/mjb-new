@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Honeypot: real visitors never fill this in; pretend success for bots.
-if (!empty($_POST['website'])) {
+if (!empty($_POST['hp_extra_note'])) {
     respond(200, 'Thank you. Your inquiry has been sent.');
 }
 

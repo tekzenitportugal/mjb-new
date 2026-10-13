@@ -5729,6 +5729,18 @@ body.menu-open .site-header>a::after {
   display: none
 }
 
+.contact-form-status.is-success {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-300);
+  border-left: 4px solid var(--primary-900);
+  border-radius: 4px;
+  color: var(--primary-900);
+  font-size: var(--body-large);
+  font-weight: 700;
+  line-height: var(--line-body-large);
+  padding: 14px 18px
+}
+
 .contact-routing {
   background: var(--silver-100);
   padding-top: 260px;
