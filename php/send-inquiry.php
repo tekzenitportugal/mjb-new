@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-function respond(int $code, string $message): never
+function respond(int $code, string $message)
 {
     http_response_code($code);
     echo json_encode(['ok' => $code === 200, 'message' => $message]);
@@ -41,12 +41,6 @@ $message = mb_substr(trim((string) ($_POST['message'] ?? '')), 0, 5000);
 
 if ($name === '' || $company === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($_POST['consent'])) {
     respond(422, 'Please complete all required fields with a valid email.');
-}
-
-// Basic rate limit: one submission per 30 seconds per IP.
-$stamp = sys_get_temp_dir() . '/mjb_inquiry_' . md5($_SERVER['REMOTE_ADDR'] ?? '');
-if (is_file($stamp) && time() - filemtime($stamp) < 30) {
-    respond(429, 'Please wait a moment before sending another inquiry.');
 }
 
 require __DIR__ . '/phpmailer/Exception.php';
@@ -93,7 +87,6 @@ try {
     $mail->Subject = "Website inquiry from $name ($company)";
     $mail->Body    = "Name: $name\nCompany: $company\nEmail: $email\nPhone: " . ($phone ?: '-') . "\n\nMessage:\n$message\n";
     $mail->send();
-    @touch($stamp);
     respond(200, 'Thank you. Your inquiry has been sent.');
 } catch (Exception $e) {
     error_log('send-inquiry: ' . $mail->ErrorInfo);
