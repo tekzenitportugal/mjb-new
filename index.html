@@ -609,11 +609,13 @@
         </div>
     </footer>
     <dialog class="waitlist-modal" id="waitlist" aria-labelledby="waitlist-title">
+        <button class="waitlist-close" type="button" aria-label="Close" data-waitlist-close><img src="assets/icons/x.svg" alt="" width="24" height="24"></button>
         <form class="waitlist-form" method="post" data-action="php/send-waitlist.php" novalidate>
-            <button class="waitlist-close" type="button" aria-label="Close" data-waitlist-close><img src="assets/icons/x.svg" alt="" width="24" height="24"></button>
-            <p class="waitlist-eyebrow">Coming soon</p>
-            <h2 id="waitlist-title">Get early access</h2>
-            <p class="waitlist-intro">Be the first to know when Cato cabinets and shelving systems are available to order directly from MJB. We’ll only email you about Cato availability. By joining, you agree to our <a href="#">Privacy Policy</a>.</p>
+            <div class="waitlist-header">
+                <p class="waitlist-eyebrow">Coming soon</p>
+                <h2 id="waitlist-title">Get early access</h2>
+                <p class="waitlist-intro">Be the first to know when Cato cabinets and shelving systems are available to order directly from MJB. We’ll only email you about Cato availability. By joining, you agree to our <a href="#">Privacy Policy</a>.</p>
+            </div>
             <fieldset class="waitlist-group">
                 <legend>Country</legend>
                 <div class="waitlist-chips">
@@ -621,7 +623,8 @@
                     <label class="waitlist-chip"><input type="radio" name="country" value="Mexico"><span>Mexico</span></label>
                 </div>
             </fieldset>
-            <label class="waitlist-email"><input type="email" name="email" placeholder=" " autocomplete="email" maxlength="254" required><span>Email*</span></label>
+            <label class="waitlist-email" data-field="email"><input type="email" name="email" placeholder=" " autocomplete="email" maxlength="254" required><span>Email*</span></label>
+            <label class="waitlist-email" data-field="whatsapp" hidden><input type="tel" name="whatsapp" placeholder=" " autocomplete="tel" inputmode="tel" maxlength="24" disabled><span>WhatsApp number*</span></label>
             <fieldset class="waitlist-group">
                 <legend>I’m a… <span>(optional)</span></legend>
                 <div class="waitlist-chips" data-deselectable>
@@ -645,6 +648,14 @@
                 <button class="btn btn-dark waitlist-submit" type="submit">Join the waitlist</button>
             </div>
         </form>
+        <div class="waitlist-success" hidden>
+            <img class="waitlist-check" src="assets/icons/circle-check.svg" alt="" width="48" height="48">
+            <h2 id="waitlist-done-title" tabindex="-1">Thanks, you’re on<br>the waitlist</h2>
+            <p>We’ll <span data-waitlist-via>email you at</span> <strong data-waitlist-contact></strong> as soon as Cato cabinets and shelving are available to order directly from MJB.</p>
+            <div class="waitlist-foot">
+                <button class="btn btn-dark waitlist-submit" type="button" data-waitlist-close>Back to the site</button>
+            </div>
+        </div>
     </dialog>
 </body>
 

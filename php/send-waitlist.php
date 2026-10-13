@@ -42,7 +42,21 @@ $countries = ['United States', 'Mexico'];
 $roles     = ['Builder / contractor', 'Dealer', 'Manufacturer', 'Other'];
 $interests = ['Cabinets', 'Shelving', 'Millwork'];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !in_array($country, $countries, true)) {
+if (!in_array($country, $countries, true)) {
+    respond(422, 'Please choose a country.');
+}
+
+// US signups give an email address; Mexico signups give a WhatsApp number instead.
+$whatsapp = '';
+if ($country === 'Mexico') {
+    $rawWhatsapp = $clean((string) ($_POST['whatsapp'] ?? ''), 24);
+    $digits = preg_replace('/\D/', '', $rawWhatsapp);
+    if (!preg_match('/^[+\d\s().-]+$/', $rawWhatsapp) || strlen($digits) < 10 || strlen($digits) > 15) {
+        respond(422, 'Please enter a valid WhatsApp number, including the area code.');
+    }
+    $whatsapp = $rawWhatsapp;
+    $email = '';
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(422, 'Please enter a valid email address.');
 }
 if ($role !== '' && !in_array($role, $roles, true)) {
@@ -70,27 +84,32 @@ try {
 
     $mail->setFrom($config['from_email'], $config['from_name']);
     $mail->addAddress($config['to_email']);
-    $mail->addReplyTo($email);
+    $contact = $country === 'Mexico' ? $whatsapp : $email;
+    if ($email !== '') {
+        $mail->addReplyTo($email);
+    }
 
     $content = build_email(
         $config['site_url'] ?? 'https://mjbwood.com',
         'Cato waitlist',
         'New waitlist signup',
-        "$email joined the waitlist for Cato cabinets and shelving.",
+        "$contact joined the waitlist for Cato cabinets and shelving.",
         [
-            'Email'         => $email,
             'Country'       => $country,
+            ($country === 'Mexico' ? 'WhatsApp' : 'Email') => $contact,
             "I'm a"         => $role,
             'Interested in' => $chosen ? implode(', ', $chosen) : '',
         ],
         null,
-        $email,
+        $email !== '' ? $email : null,
         'Cato cabinets and shelving: MJB Wood',
-        'cid:mjb-logo'
+        'cid:mjb-logo',
+        $country === 'Mexico' ? 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp) : null,
+        $country === 'Mexico' ? 'Reply on WhatsApp' : null
     );
     $mail->addEmbeddedImage(__DIR__ . '/../assets/email/logo.png', 'mjb-logo', 'mjb-wood-logo.png', 'base64', 'image/png');
     $mail->isHTML(true);
-    $mail->Subject = 'Cato waitlist signup: ' . $email;
+    $mail->Subject = 'Cato waitlist signup: ' . $contact;
     $mail->Body    = $content['html'];
     $mail->AltBody = $content['text'];
     $mail->send();

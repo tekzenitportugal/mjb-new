@@ -978,37 +978,78 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
  sections.forEach(section=>observer.observe(section));
 })();
 
-// Join the waitlist modal (home page): open/close, optional single-choice chips, submit to php/send-waitlist.php.
+// Join the waitlist modal (home page): open/close, optional single-choice chips, email or WhatsApp by country,
+// submit to php/send-waitlist.php and show the "joined" state.
 (() => {
   const modal = document.getElementById('waitlist');
   if (!modal) return;
   const form = modal.querySelector('.waitlist-form');
+  const success = modal.querySelector('.waitlist-success');
   const status = form.querySelector('.waitlist-status');
-  const open = event => { event.preventDefault(); status.textContent = ''; modal.showModal(); form.elements.email.focus(); };
+  const emailField = form.querySelector('[data-field="email"]');
+  const whatsappField = form.querySelector('[data-field="whatsapp"]');
+  const isMexico = () => form.elements.country.value === 'Mexico';
+
+  // US asks for an email address; Mexico asks for a WhatsApp number instead.
+  const syncContactField = () => {
+    const mexico = isMexico();
+    emailField.hidden = mexico;
+    whatsappField.hidden = !mexico;
+    const email = emailField.querySelector('input');
+    const whatsapp = whatsappField.querySelector('input');
+    email.disabled = mexico; email.required = !mexico;
+    whatsapp.disabled = !mexico; whatsapp.required = mexico;
+    status.textContent = '';
+  };
+  form.querySelectorAll('input[name="country"]').forEach(radio => radio.addEventListener('change', syncContactField));
+
+  const showForm = () => {
+    success.hidden = true; form.hidden = false; status.textContent = '';
+    syncContactField();
+  };
+  const open = event => {
+    event.preventDefault();
+    showForm();
+    modal.showModal();
+    (isMexico() ? whatsappField : emailField).querySelector('input').focus();
+  };
   document.querySelectorAll('[data-waitlist-open]').forEach(trigger => trigger.addEventListener('click', open));
-  modal.querySelector('[data-waitlist-close]').addEventListener('click', () => modal.close());
+  modal.querySelectorAll('[data-waitlist-close]').forEach(button => button.addEventListener('click', () => modal.close()));
   modal.addEventListener('click', event => { if (event.target === modal) modal.close(); });
+
   // "I'm a…" is optional, so clicking the selected chip again clears it.
   form.querySelectorAll('[data-deselectable] input[type="radio"]').forEach(radio => {
     radio.addEventListener('mousedown', () => { radio.dataset.was = radio.checked ? '1' : ''; });
     radio.addEventListener('click', () => { if (radio.dataset.was) radio.checked = false; });
   });
+
+  const fail = (message, field) => {
+    status.classList.remove('is-success'); status.textContent = message; if (field) field.focus();
+  };
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    const email = form.elements.email;
-    if (!email.value.trim() || !email.validity.valid) {
-      status.classList.remove('is-success'); status.textContent = 'Please enter a valid email address.'; email.focus(); return;
+    const mexico = isMexico();
+    const field = (mexico ? whatsappField : emailField).querySelector('input');
+    const value = field.value.trim();
+    if (mexico) {
+      const digits = value.replace(/\D/g, '');
+      if (digits.length < 10 || digits.length > 15 || !/^[+\d\s().-]+$/.test(value)) return fail('Please enter a valid WhatsApp number, including the area code.', field);
+    } else if (!value || !field.validity.valid) {
+      return fail('Please enter a valid email address.', field);
     }
     const button = form.querySelector('button[type="submit"]');
     button.disabled = true; status.classList.remove('is-success'); status.textContent = 'Sending…';
     try {
       const response = await fetch(form.dataset.action, { method: 'POST', body: new FormData(form) });
       const result = await response.json().catch(() => ({}));
-      status.classList.toggle('is-success', response.ok);
-      status.textContent = result.message || (response.ok ? 'Thank you. You’re on the waitlist.' : 'Sorry, something went wrong. Please try again.');
-      if (response.ok) { form.reset(); setTimeout(() => { if (modal.open) modal.close(); }, 2500); }
+      if (!response.ok) return fail(result.message || 'Sorry, something went wrong. Please try again.');
+      success.querySelector('[data-waitlist-via]').textContent = mexico ? 'message you on WhatsApp at' : 'email you at';
+      success.querySelector('[data-waitlist-contact]').textContent = value;
+      form.reset(); syncContactField();
+      form.hidden = true; success.hidden = false;
+      success.querySelector('h2').focus();
     } catch (error) {
-      status.classList.remove('is-success'); status.textContent = 'Network error. Please try again or email us directly.';
+      fail('Network error. Please try again or email us directly.');
     } finally { button.disabled = false; }
   });
 })();

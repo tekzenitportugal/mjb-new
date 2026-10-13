@@ -9835,7 +9835,7 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 }
 
 .sus-hero .hero-copy {
-  width: 480px
+  width: 499px
 }
 
 .sus-hero .hero-copy h1 {
@@ -10405,7 +10405,7 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 .am-row {
   display: flex;
   align-items: center;
-  gap: 80px
+  gap: 52px
 }
 
 .am-row+.am-row {
@@ -10800,16 +10800,18 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   }
 }
 
-/* Join the waitlist modal (home page). */
+/* Join the waitlist modal (home page): form, Mexico/WhatsApp variant and "joined" state. */
 .waitlist-modal {
-  width: min(600px, calc(100vw - 32px));
+  position: fixed;
+  width: min(560px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
   margin: auto;
   padding: 0;
   border: 0;
-  border-radius: 20px;
+  border-radius: 16px;
   background: var(--silver-100);
   color: var(--silver-800);
+  box-shadow: 0 24px 64px rgb(0 0 0 / 18%);
   overflow: auto
 }
 
@@ -10817,8 +10819,17 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   background: rgb(21 23 20 / 72%)
 }
 
+html:has(.waitlist-modal[open]) {
+  overflow: hidden
+}
+
+.waitlist-form[hidden],
+.waitlist-success[hidden],
+.waitlist-email[hidden] {
+  display: none
+}
+
 .waitlist-form {
-  position: relative;
   padding: 48px;
   display: flex;
   flex-direction: column;
@@ -10826,14 +10837,17 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 }
 
 .waitlist-form p,
-.waitlist-form h2 {
+.waitlist-form h2,
+.waitlist-success p,
+.waitlist-success h2 {
   margin: 0
 }
 
 .waitlist-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
   width: 32px;
   height: 32px;
   display: grid;
@@ -10855,15 +10869,21 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   height: 20px
 }
 
-.waitlist-form .waitlist-eyebrow {
-  margin-top: 16px;
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--silver-700)
+.waitlist-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
 }
 
-.waitlist-form h2 {
-  margin-top: -16px;
+.waitlist-form .waitlist-eyebrow {
+  font-weight: var(--weight-medium);
+  font-size: 12px;
+  line-height: 16px;
+  color: #595959
+}
+
+.waitlist-form h2,
+.waitlist-success h2 {
   font-family: var(--font-heading);
   font-weight: var(--weight-medium);
   font-size: 32px;
@@ -10874,7 +10894,6 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 
 .waitlist-form .waitlist-intro {
   max-width: 440px;
-  margin-top: -8px;
   font-size: 14px;
   line-height: 20px;
   font-weight: var(--weight-medium);
@@ -10949,7 +10968,7 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 .waitlist-chip input:checked+span {
   background: var(--silver-800);
   border-color: var(--silver-800);
-  color: #fff
+  color: var(--silver-100)
 }
 
 .waitlist-chip input:focus-visible+span {
@@ -11007,12 +11026,6 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   opacity: 0
 }
 
-.waitlist-foot {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 4px
-}
-
 .waitlist-form .waitlist-status {
   margin-top: -8px;
   font-size: 14px;
@@ -11024,37 +11037,80 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   display: none
 }
 
-/* Same success treatment as the contact form. */
-.waitlist-form .waitlist-status.is-success {
-  background: var(--primary-50);
-  border: 1px solid var(--primary-300);
-  border-left: 4px solid var(--primary-900);
-  border-radius: 4px;
-  color: var(--primary-900);
-  font-size: var(--body-large);
-  font-weight: 700;
-  line-height: var(--line-body-large);
-  padding: 14px 18px
+.waitlist-form .waitlist-status:not(.is-success):not(:empty) {
+  color: #a63a2b
 }
 
-.waitlist-form .waitlist-submit {
+.waitlist-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px
+}
+
+.waitlist-modal .waitlist-submit {
   flex: none;
+  font-size: var(--body-large);
+  line-height: var(--line-body-large);
+  height: 55px;
+  max-height: 55px
+}
+
+/* "Joined" state */
+.waitlist-success {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.waitlist-success:focus-within h2 {
+  outline: 0
+}
+
+.waitlist-check {
+  display: block;
+  width: 48px;
+  height: 48px
+}
+
+.waitlist-success h2 {
+  margin-top: 0
+}
+
+.waitlist-success p {
+  max-width: 360px;
   font-size: 14px;
   line-height: 20px;
-  height: 54px;
-  max-height: 54px
+  color: var(--silver-700)
+}
+
+.waitlist-success p strong {
+  font-weight: var(--weight-medium);
+  color: var(--silver-800);
+  overflow-wrap: anywhere
+}
+
+.waitlist-success .waitlist-foot {
+  margin-top: 36px
 }
 
 @media(max-width:767px) {
   .waitlist-form {
-    padding: 32px 24px
-  }
-
-  .waitlist-form {
+    padding: 32px 24px;
     gap: 20px
   }
 
-  .waitlist-form h2 {
+  .waitlist-success {
+    padding: 32px 24px
+  }
+
+  .waitlist-close {
+    top: 14px;
+    right: 14px
+  }
+
+  .waitlist-form h2,
+  .waitlist-success h2 {
     font-size: 26px;
     line-height: 30px
   }
@@ -11065,7 +11121,8 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   }
 
   .waitlist-form .waitlist-intro,
-  .waitlist-group legend {
+  .waitlist-group legend,
+  .waitlist-success p {
     font-size: 12px;
     line-height: 17px
   }
@@ -11087,31 +11144,12 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
     font-size: 11px
   }
 
-  .waitlist-form .waitlist-submit {
-    font-size: 13px;
+  .waitlist-modal .waitlist-submit {
+    width: 100%;
+    font-size: 15px;
     height: 48px;
     max-height: 48px
   }
-
-  .waitlist-close {
-    top: 16px;
-    right: 16px
-  }
-
-  .waitlist-foot {
-    flex-direction: column;
-    align-items: stretch
-  }
-
-  .waitlist-form .waitlist-status.is-success {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 12px 14px
-  }
-}
-
-html:has(.waitlist-modal[open]) {
-  overflow: hidden
 }
 
 /* Sustainability: the wood vs. other materials table becomes an accordion on mobile. */

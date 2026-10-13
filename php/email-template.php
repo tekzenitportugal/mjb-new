@@ -24,7 +24,9 @@ function build_email(
     ?string $message = null,
     ?string $replyTo = null,
     ?string $replySubject = null,
-    ?string $logoSrc = null
+    ?string $logoSrc = null,
+    ?string $replyUrl = null,
+    ?string $replyLabel = null
 ): array {
     $e = static fn(string $s): string => htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $siteUrl = rtrim($siteUrl, '/');
@@ -34,11 +36,16 @@ function build_email(
     foreach ($rows as $label => $value) {
         $value = trim($value) === '' ? '-' : $value;
         $border = $label === $last ? '' : 'border-bottom:1px solid #e5e9e2;';
-        $display = $label === 'Email'
-            ? '<a href="mailto:' . $e($value) . '" style="color:#2e302b;text-decoration:underline;">' . $e($value) . '</a>'
-            : ($label === 'Phone' && $value !== '-'
-                ? '<a href="tel:' . $e(preg_replace('/[^\d+]/', '', $value)) . '" style="color:#2e302b;text-decoration:underline;">' . $e($value) . '</a>'
-                : $e($value));
+        $linkStyle = 'color:#2e302b;text-decoration:underline;';
+        if ($label === 'Email' && $value !== '-') {
+            $display = '<a href="mailto:' . $e($value) . '" style="' . $linkStyle . '">' . $e($value) . '</a>';
+        } elseif ($label === 'Phone' && $value !== '-') {
+            $display = '<a href="tel:' . $e(preg_replace('/[^\d+]/', '', $value)) . '" style="' . $linkStyle . '">' . $e($value) . '</a>';
+        } elseif ($label === 'WhatsApp' && $value !== '-') {
+            $display = '<a href="https://wa.me/' . $e(preg_replace('/\D/', '', $value)) . '" style="' . $linkStyle . '">' . $e($value) . '</a>';
+        } else {
+            $display = $e($value);
+        }
         $rowsHtml .= '<tr>'
             . '<td style="' . $border . 'padding:14px 0;width:34%;vertical-align:top;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;letter-spacing:.04em;text-transform:uppercase;color:#82867e;">' . $e((string) $label) . '</td>'
             . '<td style="' . $border . 'padding:14px 0;vertical-align:top;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:22px;color:#2e302b;">' . $display . '</td>'
@@ -56,10 +63,17 @@ function build_email(
     }
 
     $buttonHtml = '';
-    if ($replyTo !== null && $replyTo !== '') {
+    $href = null;
+    $buttonLabel = $replyLabel;
+    if ($replyUrl !== null && $replyUrl !== '') {
+        $href = $replyUrl;
+    } elseif ($replyTo !== null && $replyTo !== '') {
         $href = 'mailto:' . rawurlencode($replyTo) . ($replySubject ? '?subject=' . rawurlencode($replySubject) : '');
+        $buttonLabel = $buttonLabel ?? 'Reply to ' . $replyTo;
+    }
+    if ($href !== null) {
         $buttonHtml = '<tr><td style="padding:32px 40px 0;">'
-            . '<a href="' . $e($href) . '" style="display:inline-block;background:#151714;color:#f4f9ec;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;line-height:20px;text-decoration:none;padding:14px 26px;border-radius:12px;">Reply to ' . $e($replyTo) . '</a>'
+            . '<a href="' . $e($href) . '" style="display:inline-block;background:#151714;color:#f4f9ec;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;line-height:20px;text-decoration:none;padding:14px 26px;border-radius:12px;">' . $e($buttonLabel ?? 'Reply') . '</a>'
             . '</td></tr>';
     }
 
