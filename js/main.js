@@ -942,3 +942,38 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
  },{passive:true});
  window.addEventListener('resize',()=>track.scrollTo({left:track.clientWidth*current,behavior:'instant'}));
 })();
+
+/* Sustainability video: play (muted, as browsers require) when it scrolls into view, pause when it leaves. */
+(()=>{
+ const frame=document.querySelector('.sus-video iframe');
+ if(!frame||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ let ready=false,visible=false;
+ const send=(method,value)=>frame.contentWindow.postMessage(JSON.stringify({method,value}),'https://player.vimeo.com');
+ const sync=()=>{if(ready)send(visible?'play':'pause');};
+ frame.addEventListener('load',()=>send('addEventListener','ready'));
+ addEventListener('message',event=>{
+  if(event.origin!=='https://player.vimeo.com'||event.source!==frame.contentWindow)return;
+  let data=event.data;
+  if(typeof data==='string'){try{data=JSON.parse(data);}catch(e){return;}}
+  if(data&&data.event==='ready'){ready=true;sync();}
+ });
+ new IntersectionObserver(entries=>{
+  visible=entries[entries.length-1].isIntersecting;
+  sync();
+ },{threshold:.5}).observe(frame);
+})();
+
+/* Legal pages: highlight the table-of-contents entry for the section being read. */
+(()=>{
+ const links=[...document.querySelectorAll('.legal-toc a')];
+ if(!links.length||!('IntersectionObserver' in window))return;
+ const sections=links.map(link=>document.getElementById(link.hash.slice(1))).filter(Boolean);
+ const visible=new Set();
+ const set=id=>links.forEach(link=>{if(link.hash==='#'+id)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting)visible.add(entry.target);else visible.delete(entry.target);});
+  const first=sections.find(section=>visible.has(section));
+  if(first)set(first.id);
+ },{rootMargin:'-120px 0px -60% 0px'});
+ sections.forEach(section=>observer.observe(section));
+})();

@@ -16,6 +16,10 @@
   <url><loc>https://mjbwood.com/files/rv-transportation.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mjbwood.com/files/services.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mjbwood.com/files/contacts.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mjbwood.com/files/about-mjb.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mjbwood.com/files/sustainability.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mjbwood.com/files/terms-of-sale.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://mjbwood.com/files/terms-of-purchase.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://mjbwood.com/files/coors-family.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mjbwood.com/files/mjb-imports.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://mjbwood.com/files/mjb-mexico.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
