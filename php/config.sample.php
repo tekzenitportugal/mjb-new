@@ -9,4 +9,5 @@ return [
     'from_email' => 'no-reply@mjbwood.com',
     'from_name'  => 'MJB Wood Website',
     'to_email'   => 'info@mjbwood.com',
+    'site_url'   => 'https://mjbwood.com', // used for the logo and links in notification emails
 ];

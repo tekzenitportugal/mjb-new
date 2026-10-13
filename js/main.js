@@ -1000,7 +1000,7 @@ document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Da
       status.classList.remove('is-success'); status.textContent = 'Please enter a valid email address.'; email.focus(); return;
     }
     const button = form.querySelector('button[type="submit"]');
-    button.disabled = true; status.classList.add('is-success'); status.textContent = 'Sending…';
+    button.disabled = true; status.classList.remove('is-success'); status.textContent = 'Sending…';
     try {
       const response = await fetch(form.dataset.action, { method: 'POST', body: new FormData(form) });
       const result = await response.json().catch(() => ({}));

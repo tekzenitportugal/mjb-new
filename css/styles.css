@@ -11009,21 +11009,32 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
 
 .waitlist-foot {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-end;
   margin-top: 4px
 }
 
 .waitlist-form .waitlist-status {
-  flex: 1;
-  font-size: 12px;
-  line-height: 16px;
+  margin-top: -8px;
+  font-size: 14px;
+  line-height: 20px;
   color: #a63a2b
 }
 
+.waitlist-form .waitlist-status:empty {
+  display: none
+}
+
+/* Same success treatment as the contact form. */
 .waitlist-form .waitlist-status.is-success {
-  color: var(--primary-700)
+  background: var(--primary-50);
+  border: 1px solid var(--primary-300);
+  border-left: 4px solid var(--primary-900);
+  border-radius: 4px;
+  color: var(--primary-900);
+  font-size: var(--body-large);
+  font-weight: 700;
+  line-height: var(--line-body-large);
+  padding: 14px 18px
 }
 
 .waitlist-form .waitlist-submit {
@@ -11088,8 +11099,14 @@ body[class] :is(.acc-item, .industry-detail-item) p:not(.eyebrow) {
   }
 
   .waitlist-foot {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: stretch
+  }
+
+  .waitlist-form .waitlist-status.is-success {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px 14px
   }
 }
 

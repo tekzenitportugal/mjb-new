@@ -50,6 +50,7 @@ if ($role !== '' && !in_array($role, $roles, true)) {
 }
 $chosen = array_values(array_intersect($interests, array_map('strval', (array) ($_POST['interest'] ?? []))));
 
+require __DIR__ . '/email-template.php';
 require __DIR__ . '/phpmailer/Exception.php';
 require __DIR__ . '/phpmailer/PHPMailer.php';
 require __DIR__ . '/phpmailer/SMTP.php';
@@ -71,8 +72,27 @@ try {
     $mail->addAddress($config['to_email']);
     $mail->addReplyTo($email);
 
+    $content = build_email(
+        $config['site_url'] ?? 'https://mjbwood.com',
+        'Cato waitlist',
+        'New waitlist signup',
+        "$email joined the waitlist for Cato cabinets and shelving.",
+        [
+            'Email'         => $email,
+            'Country'       => $country,
+            "I'm a"         => $role,
+            'Interested in' => $chosen ? implode(', ', $chosen) : '',
+        ],
+        null,
+        $email,
+        'Cato cabinets and shelving: MJB Wood',
+        'cid:mjb-logo'
+    );
+    $mail->addEmbeddedImage(__DIR__ . '/../assets/email/logo.png', 'mjb-logo', 'mjb-wood-logo.png', 'base64', 'image/png');
+    $mail->isHTML(true);
     $mail->Subject = 'Cato waitlist signup: ' . $email;
-    $mail->Body    = "Email: $email\nCountry: $country\nI'm a: " . ($role ?: '-') . "\nInterested in: " . ($chosen ? implode(', ', $chosen) : '-') . "\n";
+    $mail->Body    = $content['html'];
+    $mail->AltBody = $content['text'];
     $mail->send();
     respond(200, 'Thank you. You’re on the waitlist.');
 } catch (Exception $e) {

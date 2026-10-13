@@ -43,6 +43,7 @@ if ($name === '' || $company === '' || $message === '' || !filter_var($email, FI
     respond(422, 'Please complete all required fields with a valid email.');
 }
 
+require __DIR__ . '/email-template.php';
 require __DIR__ . '/phpmailer/Exception.php';
 require __DIR__ . '/phpmailer/PHPMailer.php';
 require __DIR__ . '/phpmailer/SMTP.php';
@@ -84,8 +85,22 @@ try {
         $mail->addAttachment($_FILES['files']['tmp_name'][$i], preg_replace('/[^\w.\- ]/', '_', basename($original)));
     }
 
+    $content = build_email(
+        $config['site_url'] ?? 'https://mjbwood.com',
+        'New website inquiry',
+        "Inquiry from $name",
+        "$name at $company sent a message through the contact form.",
+        ['Name' => $name, 'Company' => $company, 'Email' => $email, 'Phone' => $phone],
+        $message,
+        $email,
+        'Re: your inquiry to MJB Wood',
+        'cid:mjb-logo'
+    );
+    $mail->addEmbeddedImage(__DIR__ . '/../assets/email/logo.png', 'mjb-logo', 'mjb-wood-logo.png', 'base64', 'image/png');
+    $mail->isHTML(true);
     $mail->Subject = "Website inquiry from $name ($company)";
-    $mail->Body    = "Name: $name\nCompany: $company\nEmail: $email\nPhone: " . ($phone ?: '-') . "\n\nMessage:\n$message\n";
+    $mail->Body    = $content['html'];
+    $mail->AltBody = $content['text'];
     $mail->send();
     respond(200, 'Thank you. Your inquiry has been sent.');
 } catch (Exception $e) {
