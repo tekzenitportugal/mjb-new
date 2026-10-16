@@ -11213,3 +11213,40 @@ body[class] .grade.grade p {
     padding-bottom: 35px
   }
 }
+
+/* Desktop hero banners: fill the screen height (100vh). Copy stays pinned to the bottom. */
+@media (min-width: 1280px) {
+
+  .hero,
+  .hero-about,
+  .hero-coors,
+  .sus-hero,
+  .page-services .hero-services,
+  .material-detail-hero,
+  .industry-detail-hero,
+  .industries-hero,
+  .contact-hero,
+  .am-hero {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end
+  }
+
+  .hero .hero-inner,
+  .hero-home .hero-inner,
+  .hero-coors .hero-inner,
+  .sus-hero .hero-inner,
+  .page-services .hero-services .hero-inner {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    padding-top: 140px
+  }
+}
