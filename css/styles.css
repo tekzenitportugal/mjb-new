@@ -1,6 +1,6 @@
 /* Design tokens. Type and spacing scale fluidly with the viewport:
-   mobile value at 375px -> desktop value at 1536px -> large value at 1920px,
-   held at the mobile value below and the large value above. */
+   mobile value at 375px -> desktop value at 1536px,
+   held at the mobile value below and the desktop value above. */
 :root {
   --font-body: "Manrope", Arial, sans-serif;
   --font-heading: "IBM Plex Serif", Georgia, serif;
@@ -10,116 +10,60 @@
   --weight-regular: 400;
   --weight-light: 300;
   --weight-semibold: 600;
-  --headline-large: clamp(2.5rem, 0.8613vw + 2.2981rem, 3.125rem);
-  --headline: clamp(2rem, 0.6891vw + 1.8385rem, 2.5rem);
-  --headline-small: clamp(1.75rem, 0.6029vw + 1.6087rem, 2.1875rem);
-  --body-large: clamp(0.875rem, 0.3015vw + 0.8043rem, 1.0938rem);
-  --body: clamp(0.75rem, 0.2584vw + 0.6894rem, 0.9375rem);
-  --body-small: clamp(0.625rem, 0.2153vw + 0.5745rem, 0.7813rem);
-  --label-large: clamp(0.625rem, 0.2153vw + 0.5745rem, 0.7813rem);
-  --label: clamp(0.5rem, 0.1723vw + 0.4596rem, 0.625rem);
-  --label-small: clamp(0.375rem, 0.1292vw + 0.3447rem, 0.4688rem);
-  --display-large: clamp(3.5rem, 1.2059vw + 3.2174rem, 4.375rem);
-  --display: clamp(3.25rem, 1.1197vw + 2.9876rem, 4.0625rem);
-  --display-small: clamp(2.75rem, 0.9475vw + 2.5279rem, 3.4375rem);
-  --title-large: clamp(1.5rem, 0.5168vw + 1.3789rem, 1.875rem);
-  --title: clamp(1.25rem, 0.4307vw + 1.1491rem, 1.5625rem);
-  --title-small: clamp(1rem, 0.3445vw + 0.9193rem, 1.25rem);
-  --line-label-large: clamp(0.75rem, 0.2584vw + 0.6894rem, 0.9375rem);
-  --line-label: clamp(0.75rem, 0.2584vw + 0.6894rem, 0.9375rem);
-  --line-label-small: clamp(0.5rem, 0.1723vw + 0.4596rem, 0.625rem);
-  --line-body-large: clamp(1.125rem, 0.3876vw + 1.0342rem, 1.4063rem);
-  --line-body: clamp(1rem, 0.3445vw + 0.9193rem, 1.25rem);
-  --line-body-small: clamp(0.75rem, 0.2584vw + 0.6894rem, 0.9375rem);
-  --line-title-large: clamp(1.75rem, 0.6029vw + 1.6087rem, 2.1875rem);
-  --line-title: clamp(1.5rem, 0.5168vw + 1.3789rem, 1.875rem);
-  --line-title-small: clamp(1.25rem, 0.4307vw + 1.1491rem, 1.5625rem);
-  --line-headline-large: clamp(2.75rem, 0.9475vw + 2.5279rem, 3.4375rem);
-  --line-headline: clamp(2.25rem, 0.7752vw + 2.0683rem, 2.8125rem);
-  --line-headline-small: clamp(2rem, 0.6891vw + 1.8385rem, 2.5rem);
-  --line-display-large: clamp(3.75rem, 1.292vw + 3.4472rem, 4.6875rem);
-  --line-display: clamp(3.5rem, 1.2059vw + 3.2174rem, 4.375rem);
-  --line-display-small: clamp(3rem, 1.0336vw + 2.7578rem, 3.75rem);
-  --space-3xs: clamp(0.25rem, 0.0861vw + 0.2298rem, 0.3125rem);
-  --space-2xs: clamp(0.5rem, 0.1723vw + 0.4596rem, 0.625rem);
-  --space-xs: clamp(0.75rem, 0.2584vw + 0.6894rem, 0.9375rem);
-  --space-s: clamp(1rem, 0.3445vw + 0.9193rem, 1.25rem);
-  --space-m: clamp(1.25rem, 0.4307vw + 1.1491rem, 1.5625rem);
-  --space-l: clamp(1.5rem, 0.5168vw + 1.3789rem, 1.875rem);
-  --space-xl: clamp(1.75rem, 0.6029vw + 1.6087rem, 2.1875rem);
-  --space-2xl: clamp(2rem, 0.6891vw + 1.8385rem, 2.5rem);
-  --space-3xl: clamp(2.25rem, 0.7752vw + 2.0683rem, 2.8125rem);
-  --space-4xl: clamp(2.5rem, 0.8613vw + 2.2981rem, 3.125rem);
-  --space-5xl: clamp(2.75rem, 0.9475vw + 2.5279rem, 3.4375rem);
-  --space-6xl: clamp(3rem, 1.0336vw + 2.7578rem, 3.75rem);
-  --space-7xl: clamp(3.25rem, 1.1197vw + 2.9876rem, 4.0625rem);
-  --space-8xl: clamp(3.5rem, 1.2059vw + 3.2174rem, 4.375rem);
-  --space-9xl: clamp(3.75rem, 1.292vw + 3.4472rem, 4.6875rem);
-  --space-10xl: clamp(4rem, 1.3781vw + 3.677rem, 5rem);
-  --space-11xl: clamp(4.25rem, 1.4643vw + 3.9068rem, 5.3125rem);
-  --space-12xl: clamp(4.5rem, 1.5504vw + 4.1366rem, 5.625rem);
-  --space-13xl: clamp(4.75rem, 1.6365vw + 4.3664rem, 5.9375rem);
-  --space-14xl: clamp(5rem, 1.7227vw + 4.5963rem, 6.25rem);
-  --space-15xl: clamp(5.25rem, 1.8088vw + 4.8261rem, 6.5625rem);
+  --headline-large: clamp(2.5rem, 1.7227vw + 2.0963rem, 3.75rem);
+  --headline: clamp(2rem, 1.3781vw + 1.6770rem, 3rem);
+  --headline-small: clamp(1.75rem, 1.2059vw + 1.4674rem, 2.625rem);
+  --body-large: clamp(0.875rem, 0.6029vw + 0.7337rem, 1.3125rem);
+  --body: clamp(0.75rem, 0.5168vw + 0.6289rem, 1.125rem);
+  --body-small: clamp(0.625rem, 0.4307vw + 0.5241rem, 0.9375rem);
+  --label-large: clamp(0.625rem, 0.4307vw + 0.5241rem, 0.9375rem);
+  --label: clamp(0.5rem, 0.3445vw + 0.4193rem, 0.75rem);
+  --label-small: clamp(0.375rem, 0.2584vw + 0.3144rem, 0.5625rem);
+  --display-large: clamp(3.5rem, 2.4117vw + 2.9348rem, 5.25rem);
+  --display: clamp(3.25rem, 2.2394vw + 2.7251rem, 4.875rem);
+  --display-small: clamp(2.75rem, 1.8949vw + 2.3059rem, 4.125rem);
+  --title-large: clamp(1.5rem, 1.0336vw + 1.2578rem, 2.25rem);
+  --title: clamp(1.25rem, 0.8613vw + 1.0481rem, 1.875rem);
+  --title-small: clamp(1rem, 0.6891vw + 0.8385rem, 1.5rem);
+  --line-label-large: clamp(0.75rem, 0.5168vw + 0.6289rem, 1.125rem);
+  --line-label: clamp(0.75rem, 0.5168vw + 0.6289rem, 1.125rem);
+  --line-label-small: clamp(0.5rem, 0.3445vw + 0.4193rem, 0.75rem);
+  --line-body-large: clamp(1.125rem, 0.7752vw + 0.9433rem, 1.6875rem);
+  --line-body: clamp(1rem, 0.6891vw + 0.8385rem, 1.5rem);
+  --line-body-small: clamp(0.75rem, 0.5168vw + 0.6289rem, 1.125rem);
+  --line-title-large: clamp(1.75rem, 1.2059vw + 1.4674rem, 2.625rem);
+  --line-title: clamp(1.5rem, 1.0336vw + 1.2578rem, 2.25rem);
+  --line-title-small: clamp(1.25rem, 0.8613vw + 1.0481rem, 1.875rem);
+  --line-headline-large: clamp(2.75rem, 1.8949vw + 2.3059rem, 4.125rem);
+  --line-headline: clamp(2.25rem, 1.5504vw + 1.8866rem, 3.375rem);
+  --line-headline-small: clamp(2rem, 1.3781vw + 1.6770rem, 3rem);
+  --line-display-large: clamp(3.75rem, 2.5840vw + 3.1444rem, 5.625rem);
+  --line-display: clamp(3.5rem, 2.4117vw + 2.9348rem, 5.25rem);
+  --line-display-small: clamp(3rem, 2.0672vw + 2.5155rem, 4.5rem);
+  --space-3xs: clamp(0.25rem, 0.1723vw + 0.2096rem, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.3445vw + 0.4193rem, 0.75rem);
+  --space-xs: clamp(0.75rem, 0.5168vw + 0.6289rem, 1.125rem);
+  --space-s: clamp(1rem, 0.6891vw + 0.8385rem, 1.5rem);
+  --space-m: clamp(1.25rem, 0.8613vw + 1.0481rem, 1.875rem);
+  --space-l: clamp(1.5rem, 1.0336vw + 1.2578rem, 2.25rem);
+  --space-xl: clamp(1.75rem, 1.2059vw + 1.4674rem, 2.625rem);
+  --space-2xl: clamp(2rem, 1.3781vw + 1.6770rem, 3rem);
+  --space-3xl: clamp(2.25rem, 1.5504vw + 1.8866rem, 3.375rem);
+  --space-4xl: clamp(2.5rem, 1.7227vw + 2.0963rem, 3.75rem);
+  --space-5xl: clamp(2.75rem, 1.8949vw + 2.3059rem, 4.125rem);
+  --space-6xl: clamp(3rem, 2.0672vw + 2.5155rem, 4.5rem);
+  --space-7xl: clamp(3.25rem, 2.2394vw + 2.7251rem, 4.875rem);
+  --space-8xl: clamp(3.5rem, 2.4117vw + 2.9348rem, 5.25rem);
+  --space-9xl: clamp(3.75rem, 2.5840vw + 3.1444rem, 5.625rem);
+  --space-10xl: clamp(4rem, 2.7562vw + 3.3540rem, 6rem);
+  --space-11xl: clamp(4.25rem, 2.9285vw + 3.5636rem, 6.375rem);
+  --space-12xl: clamp(4.5rem, 3.1008vw + 3.7733rem, 6.75rem);
+  --space-13xl: clamp(4.75rem, 3.2730vw + 3.9829rem, 7.125rem);
+  --space-14xl: clamp(5rem, 3.4453vw + 4.1925rem, 7.5rem);
+  --space-15xl: clamp(5.25rem, 3.6176vw + 4.4021rem, 7.875rem);
 }
 
-@media(min-width:1536px) {
-  :root {
-    --headline-large: clamp(3.125rem, 2.6042vw + 0.625rem, 3.75rem);
-    --headline: clamp(2.5rem, 2.0833vw + 0.5rem, 3rem);
-    --headline-small: clamp(2.1875rem, 1.8229vw + 0.4375rem, 2.625rem);
-    --body-large: clamp(1.0938rem, 0.9115vw + 0.2188rem, 1.3125rem);
-    --body: clamp(0.9375rem, 0.7813vw + 0.1875rem, 1.125rem);
-    --body-small: clamp(0.7813rem, 0.651vw + 0.1563rem, 0.9375rem);
-    --label-large: clamp(0.7813rem, 0.651vw + 0.1563rem, 0.9375rem);
-    --label: clamp(0.625rem, 0.5208vw + 0.125rem, 0.75rem);
-    --label-small: clamp(0.4688rem, 0.3906vw + 0.0938rem, 0.5625rem);
-    --display-large: clamp(4.375rem, 3.6458vw + 0.875rem, 5.25rem);
-    --display: clamp(4.0625rem, 3.3854vw + 0.8125rem, 4.875rem);
-    --display-small: clamp(3.4375rem, 2.8646vw + 0.6875rem, 4.125rem);
-    --title-large: clamp(1.875rem, 1.5625vw + 0.375rem, 2.25rem);
-    --title: clamp(1.5625rem, 1.3021vw + 0.3125rem, 1.875rem);
-    --title-small: clamp(1.25rem, 1.0417vw + 0.25rem, 1.5rem);
-    --line-label-large: clamp(0.9375rem, 0.7813vw + 0.1875rem, 1.125rem);
-    --line-label: clamp(0.9375rem, 0.7813vw + 0.1875rem, 1.125rem);
-    --line-label-small: clamp(0.625rem, 0.5208vw + 0.125rem, 0.75rem);
-    --line-body-large: clamp(1.4063rem, 1.1719vw + 0.2813rem, 1.6875rem);
-    --line-body: clamp(1.25rem, 1.0417vw + 0.25rem, 1.5rem);
-    --line-body-small: clamp(0.9375rem, 0.7813vw + 0.1875rem, 1.125rem);
-    --line-title-large: clamp(2.1875rem, 1.8229vw + 0.4375rem, 2.625rem);
-    --line-title: clamp(1.875rem, 1.5625vw + 0.375rem, 2.25rem);
-    --line-title-small: clamp(1.5625rem, 1.3021vw + 0.3125rem, 1.875rem);
-    --line-headline-large: clamp(3.4375rem, 2.8646vw + 0.6875rem, 4.125rem);
-    --line-headline: clamp(2.8125rem, 2.3438vw + 0.5625rem, 3.375rem);
-    --line-headline-small: clamp(2.5rem, 2.0833vw + 0.5rem, 3rem);
-    --line-display-large: clamp(4.6875rem, 3.9063vw + 0.9375rem, 5.625rem);
-    --line-display: clamp(4.375rem, 3.6458vw + 0.875rem, 5.25rem);
-    --line-display-small: clamp(3.75rem, 3.125vw + 0.75rem, 4.5rem);
-    --space-3xs: clamp(0.3125rem, 0.2604vw + 0.0625rem, 0.375rem);
-    --space-2xs: clamp(0.625rem, 0.5208vw + 0.125rem, 0.75rem);
-    --space-xs: clamp(0.9375rem, 0.7813vw + 0.1875rem, 1.125rem);
-    --space-s: clamp(1.25rem, 1.0417vw + 0.25rem, 1.5rem);
-    --space-m: clamp(1.5625rem, 1.3021vw + 0.3125rem, 1.875rem);
-    --space-l: clamp(1.875rem, 1.5625vw + 0.375rem, 2.25rem);
-    --space-xl: clamp(2.1875rem, 1.8229vw + 0.4375rem, 2.625rem);
-    --space-2xl: clamp(2.5rem, 2.0833vw + 0.5rem, 3rem);
-    --space-3xl: clamp(2.8125rem, 2.3438vw + 0.5625rem, 3.375rem);
-    --space-4xl: clamp(3.125rem, 2.6042vw + 0.625rem, 3.75rem);
-    --space-5xl: clamp(3.4375rem, 2.8646vw + 0.6875rem, 4.125rem);
-    --space-6xl: clamp(3.75rem, 3.125vw + 0.75rem, 4.5rem);
-    --space-7xl: clamp(4.0625rem, 3.3854vw + 0.8125rem, 4.875rem);
-    --space-8xl: clamp(4.375rem, 3.6458vw + 0.875rem, 5.25rem);
-    --space-9xl: clamp(4.6875rem, 3.9063vw + 0.9375rem, 5.625rem);
-    --space-10xl: clamp(5rem, 4.1667vw + 1rem, 6rem);
-    --space-11xl: clamp(5.3125rem, 4.4271vw + 1.0625rem, 6.375rem);
-    --space-12xl: clamp(5.625rem, 4.6875vw + 1.125rem, 6.75rem);
-    --space-13xl: clamp(5.9375rem, 4.9479vw + 1.1875rem, 7.125rem);
-    --space-14xl: clamp(6.25rem, 5.2083vw + 1.25rem, 7.5rem);
-    --space-15xl: clamp(6.5625rem, 5.4688vw + 1.3125rem, 7.875rem);
-  }
-}
-
-/* MJB design system. Layout breakpoints: mobile <768, desktop 768–1920, large >=1921. */
+/* MJB design system. Layout breakpoints: mobile <768, desktop >=768 (sizes stop growing at 1536). */
 :root {
   --silver-50: #fafcf9;
   --silver-100: #f5f7f3;
@@ -2559,108 +2503,6 @@ address {
   line-height: var(--line-body)
 }
 
-@media(min-width:1921px) {
-  :root {
-    --content-width: 1236px;
-    --gutter: max(20px, calc((100vw - 1236px)/2));
-    --section-space: 120px
-  }
-
-  .hero,
-  .hero-inner {
-    min-height: 1080px
-  }
-
-  .hero-copy {
-    width: 880px
-  }
-
-  .hero-inner {
-    padding-top: 422px
-  }
-
-  .hero-about .hero-copy {
-    width: 840px
-  }
-
-  .hero-about .hero-copy h1 {
-    max-width: 840px
-  }
-
-  .hero-about .hero-inner {
-    padding-top: 550px
-  }
-
-  .hero-materials .hero-copy {
-    width: 726px
-  }
-
-  .hero-materials .hero-copy h1 {
-    max-width: 726px
-  }
-
-  .hero-materials .hero-inner {
-    padding-top: 422px
-  }
-
-  .production-grid,
-  .supply-grid {
-    grid-template-columns: 576px minmax(0, 1fr);
-    gap: 166px
-  }
-
-  .production-grid h2 {
-    width: 600px
-  }
-
-  .stat-row {
-    grid-template-columns: 198px minmax(0, 1fr)
-  }
-
-
-
-
-
-
-
-  .hero-copy .lede {
-    max-width: 576px
-  }
-
-  .hero-materials .hero-copy .lede {
-    max-width: 576px
-  }
-
-  .mat-body h3 {
-    font-size: var(--title-small);
-    line-height: var(--line-title-small)
-  }
-
-  .mat-body {
-    min-height: 160px
-  }
-
-  .material-thumb {
-    height: 168px
-  }
-
-  .acc-body {
-    grid-template-columns: 425px 425px minmax(0, 1fr)
-  }
-
-  .acc-photo {
-    width: 425px;
-    height: 304px
-  }
-
-  .reach-grid {
-    grid-template-rows: 350px 350px
-  }
-
-  .community-card>.asset-pending {
-    min-height: 384px
-  }
-}
 
 @media(min-width:768px) and (max-width:1279px) {
   :root {
@@ -4021,25 +3863,6 @@ h1 {
   line-height: var(--line-display)
 }
 
-@media(min-width:1921px) {
-  .production-grid {
-    gap: 80px
-  }
-
-  .production-grid h2 {
-    font-size: var(--headline-large);
-    line-height: var(--line-headline-large)
-  }
-
-
-
-
-
-  .footer-top {
-    grid-template-columns: 285px minmax(0, 1fr) auto;
-    gap: 45px
-  }
-}
 
 @media(min-width:768px) and (max-width:1279px) {
   .production-grid {
@@ -4466,54 +4289,6 @@ h1 {
   align-items: baseline;
 }
 
-@media(min-width:1921px) {
-  .page-home .forest-copy {
-    grid-template-columns: 340px minmax(0, 1fr);
-    gap: 40px
-  }
-
-  .page-home .forest-copy .link-arrow {
-    grid-column: 2
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .location-photo {
-    height: 175px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .location-copy {
-    margin-top: 185px;
-    gap: 6px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .location-card:hover .location-copy,
-  :is(.page-home, .page-industries, .page-contacts) .location-card.is-active .location-copy {
-    margin-top: 182px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .quote-card {
-    padding: 24px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .quote-card blockquote {
-    font-size: var(--body);
-    line-height: var(--line-body)
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .quote-card figcaption {
-    font-size: var(--body-small);
-    line-height: var(--line-body-small);
-    padding-top: 15px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .quote-card figcaption strong {
-    font-size: var(--body-large);
-    line-height: var(--line-body-large)
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .quote-mark {
-    margin-bottom: 15px
-  }
-}
 
 @media(min-width:768px) and (max-width:1279px) {
   .page-home .forest-copy {
@@ -4751,19 +4526,6 @@ h1 {
   content: none
 }
 
-@media(min-width:1921px) {
-
-  :is(.page-home, .page-industries, .page-contacts) .location-copy,
-  :is(.page-home, .page-industries, .page-contacts) .location-card:hover .location-copy,
-  :is(.page-home, .page-industries, .page-contacts) .location-card.is-active .location-copy {
-    gap: 18px;
-    padding: 10px
-  }
-
-  :is(.page-home, .page-industries, .page-contacts) .location-tags span {
-    padding-inline: 6px
-  }
-}
 
 @media(max-width:767px) {
   .page-home .trusted-card {
